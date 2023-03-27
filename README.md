@@ -2,7 +2,6 @@
 
   - Kyle Hagerman [hagermak@mcmaster.ca]
 
-## How to run the product
 
 ## How to contribute to the project
 
@@ -44,6 +43,7 @@ When you develop features and enrich the product, remember that you have first t
 
 ## Documentation
 
+## How to run the product
 ## Legend
 - -i = input file path to use
 - -o = output file path to use
@@ -107,6 +107,7 @@ that correspond to a certain tile.
 ### Information regarding lakes and rivers
 1. Endorheic lakes do not count towards the maximum number of lakes 
 2. Rivers which randomly generate at a vertex where they cannot move any further just begin and end there
+
 
 ### Sample commands to run the program: 
 To run the lagoon, copy and paste the following: 
