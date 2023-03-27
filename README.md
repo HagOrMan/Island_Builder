@@ -43,8 +43,7 @@ When you develop features and enrich the product, remember that you have first t
 
 ## Documentation
 
-## How to run the product
-## Legend
+##$ Legend
 - -i = input file path to use
 - -o = output file path to use
 - -mode = (optional, defaults to circle) either 'lagoon' for lagoon mode or valid shape
@@ -108,7 +107,7 @@ that correspond to a certain tile.
 1. Endorheic lakes do not count towards the maximum number of lakes 
 2. Rivers which randomly generate at a vertex where they cannot move any further just begin and end there
 
-
+## How to run the product
 ### Sample commands to run the program: 
 To run the lagoon, copy and paste the following: 
 cd island
