@@ -39,11 +39,17 @@ public class ShortestPath implements PathFinding{
                 }
 
                 // Updates other in priority queue such that other has priority cost of its new cost.
-//                if (queue.contains())
+                updateQueue(queue, other, cost);
             }
         }
 
         return path;
+    }
+
+    // Updates the queue for a new node, first checking if it already exists and removing it if so.
+    private void updateQueue(Queue<Map.Entry<Node, Integer>> queue, Node key, Map<Node, Integer> cost){
+        queue.removeIf(entry -> entry.getKey() == key);
+        queue.add(new AbstractMap.SimpleEntry<>(key, cost.get(key)));
     }
 
     // Fills path map with empty values for path to each node.
