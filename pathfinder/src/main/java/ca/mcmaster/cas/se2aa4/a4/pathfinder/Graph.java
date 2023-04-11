@@ -1,10 +1,6 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 // node will hold index, adapter takes in vertex index and sends that to here to check against a node
 
@@ -17,7 +13,7 @@ public class Graph {
     public Graph(){
         nodes = new Hashtable<>();
         edges = new ArrayList<>();
-        weights = new Hashtable<>();
+        weights = new HashMap<>();
     }
 
     public void addNode(Node n){
@@ -36,8 +32,8 @@ public class Graph {
     }
 
     // Get list of connected node indices to an input node index.
-    public List<Integer> getAdjacentNodes(Node n){
-        return null;
+    public List<Node> getAdjacentNodes(Node n){
+        return nodes.get(n);
     }
 
     public int getWeight(Node n1, Node n2){
@@ -46,12 +42,14 @@ public class Graph {
                 return weights.get(e);
             }
         }
-        return 0;
+        return Integer.MAX_VALUE;
     }
 
     // Get list of all nodes.
     public Set<Node> getNodes(){
         return nodes.keySet();
     }
+
+    public List<Edge> getEdges() { return edges; }
 
 }
