@@ -25,9 +25,17 @@ public class Graph {
         }
     }
 
+    // Adds an edge to adjacency list and makes a new edge for it.
+    public void addEdge(Node n1, Node n2, int weight){
+        List<Node> adjacent = nodes.get(n1);
+        adjacent.add(n2);
+        Edge edge = new Edge(n1, n2, weight);
+        edges.add(edge);
+        weights.put(edge, weight);
+    }
+
 
     // add edge
-    // add node
     // get list of connected nodes to an input node
 
 
