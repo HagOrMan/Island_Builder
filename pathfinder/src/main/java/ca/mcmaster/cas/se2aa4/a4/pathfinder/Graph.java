@@ -1,6 +1,10 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 // node will hold index, adapter takes in vertex index and sends that to here to check against a node
 
@@ -36,9 +40,9 @@ public class Graph {
         return null;
     }
 
-    public int getWeight(int n1Idx, int n2Idx){
+    public int getWeight(Node n1, Node n2){
         for (Edge e : edges){
-            if (e.equals(n1Idx, n2Idx)){
+            if (e.equals(n1.getIndex(), n2.getIndex())){
                 return weights.get(e);
             }
         }
