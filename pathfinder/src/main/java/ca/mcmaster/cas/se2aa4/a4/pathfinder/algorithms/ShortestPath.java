@@ -25,7 +25,12 @@ public class ShortestPath implements PathFinding{
 
         // Goes through priority as per dijkstra's algorithm.
         while (!queue.isEmpty()){
+            System.out.println("testing");
             Node n = queue.remove().getKey();
+
+            for (Map.Entry<Node, Integer> entry : queue){
+                System.out.println(entry.getKey() + ", " + entry.getValue());
+            }
 
             for (Node other : graph.getAdjacentNodes(n)){
                 int nCost = cost.get(n);

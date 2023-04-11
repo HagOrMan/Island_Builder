@@ -39,7 +39,7 @@ public class Graph {
     public int getWeight(Node n1, Node n2){
         for (Edge e : edges){
             if (e.equals(n1.getIndex(), n2.getIndex())){
-                return weights.get(e);
+                return e.getWeight();
             }
         }
         return Integer.MAX_VALUE;
