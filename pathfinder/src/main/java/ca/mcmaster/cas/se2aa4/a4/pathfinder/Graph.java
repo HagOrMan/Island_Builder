@@ -7,20 +7,26 @@ import java.util.Map;
 
 public class Graph {
 
-    private List<Node> nodes;
+    private Map<Node, List<Node>> nodes;
     private List<Edge> edges;
     private Map<Edge, Integer> weights;
 
     public Graph(){
-        nodes = new ArrayList<>();
+        nodes = new Hashtable<>();
         edges = new ArrayList<>();
         weights = new Hashtable<>();
     }
 
+    public void addNode(Node n){
+        if (!nodes.containsKey(n)){
+            nodes.put(n, new ArrayList<>());
+        }
+    }
+    
+
     // add edge
     // add node
-    // get edge weight
-    // get nodes from edge
-    //
+    // get edge weight from inputting 2 node indices
+    // get list of connected nodes to an input node
 
 }

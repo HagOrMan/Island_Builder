@@ -24,6 +24,9 @@ public class Node {
     public boolean equals(int index) {
         return this.index == index;
     }
+    public boolean equals(Node n) {
+        return super.equals(n);
+    }
 
     public int getIndex() {
         return index;

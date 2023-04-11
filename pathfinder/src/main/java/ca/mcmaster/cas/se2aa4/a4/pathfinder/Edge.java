@@ -16,23 +16,16 @@ public class Edge {
         return weight;
     }
 
-    public boolean equals(Edge other) {
-        return super.equals(other) || (n2.equals(other.getN1Idx()) && n1.equals(other.getN2Idx()));
-    }
 
-    public boolean equals(int n1Idx, int n2Idx) {
-        return (n1.equals(n1Idx) && n1.equals(n2Idx)) || (n2.equals(n1Idx) && n1.equals(n2Idx));
-    }
-
-    public boolean n1Equals(int index){
-        return this.n1.equals(index);
+    public boolean equals(Node n1Other, Node n2Other) {
+        return (n1.equals(n1Other) && n1.equals(n2Other)) || (n2.equals(n1Other) && n1.equals(n2Other));
     }
 
 
-    public int getN1Idx() {
-        return n1.getIndex();
+    public Node getN1() {
+        return n1;
     }
-    public int getN2Idx() {
-        return n2.getIndex();
+    public Node getN2() {
+        return n2;
     }
 }
