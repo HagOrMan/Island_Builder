@@ -16,10 +16,10 @@ public class Edge {
         return weight;
     }
 
-
-    public boolean equals(Node n1Other, Node n2Other) {
-        return (n1.equals(n1Other) && n1.equals(n2Other)) || (n2.equals(n1Other) && n1.equals(n2Other));
+    public boolean equals(int n1Idx, int n2Idx) {
+        return (n1.equals(n1Idx) && n1.equals(n2Idx)) || (n2.equals(n1Idx) && n1.equals(n2Idx));
     }
+
 
 
     public Node getN1() {

@@ -5,6 +5,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+// node will hold index, adapter takes in vertex index and sends that to here to check against a node
+
 public class Graph {
 
     private Map<Node, List<Node>> nodes;
@@ -22,11 +24,23 @@ public class Graph {
             nodes.put(n, new ArrayList<>());
         }
     }
-    
+
 
     // add edge
     // add node
-    // get edge weight from inputting 2 node indices
     // get list of connected nodes to an input node
+
+    
+    public int getWeight(int n1Idx, int n2Idx){
+
+        for (Edge e : edges){
+            if (e.equals(n1Idx, n2Idx)){
+                return weights.get(e);
+            }
+        }
+
+        return 0;
+
+    }
 
 }
