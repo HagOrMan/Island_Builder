@@ -30,7 +30,7 @@ public class Graph {
     // add node
     // get list of connected nodes to an input node
 
-    
+
     public int getWeight(int n1Idx, int n2Idx){
 
         for (Edge e : edges){

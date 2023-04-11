@@ -6,11 +6,34 @@ import java.util.List;
 
 public class Node {
 
-    private final int index;
+    private int index;
+    private final int elevation;
+    private final String name;
     private static List<Integer> usedIndices = new ArrayList<>();
 
     public Node(int index){
-        // Checks if the index is already used by another node, if so, sets new index to 1 higher than current highest index.
+        addIndex(index);
+        this.elevation = 0;
+        this.name = "";
+    }
+    public Node(int index, int elevation){
+        addIndex(index);
+        this.elevation = elevation;
+        this.name = "";
+    }
+    public Node(int index, int elevation, String name){
+        addIndex(index);
+        this.elevation = elevation;
+        this.name = name;
+    }
+    public Node(int index, String name){
+        addIndex(index);
+        this.elevation = 0;
+        this.name = name;
+    }
+
+    // Checks if the index is already used by another node, if so, sets new index to 1 higher than current highest index.
+    private void addIndex(int index){
         if (!usedIndices.contains(index)){
             this.index = index;
         }
@@ -21,14 +44,20 @@ public class Node {
     }
 
 
+
     public boolean equals(int index) {
         return this.index == index;
-    }
-    public boolean equals(Node n) {
-        return super.equals(n);
     }
 
     public int getIndex() {
         return index;
+    }
+
+    public int getElevation() {
+        return elevation;
+    }
+
+    public String getName() {
+        return name;
     }
 }
