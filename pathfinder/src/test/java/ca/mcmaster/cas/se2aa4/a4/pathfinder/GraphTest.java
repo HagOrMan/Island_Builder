@@ -1,7 +1,9 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder;
 
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.NodeFactory;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.Edge;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.EdgeFactory;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -48,8 +50,10 @@ class GraphTest {
         Node n3 = nodeFactory.makeNode(2);
 
         g.addNode(n1); g.addNode(n2); g.addNode(n3);
-        Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), 5);
-        Edge e2 = new Edge(n1.getIndex(), n3.getIndex(), 5);
+
+        EdgeFactory edgeFactory = new EdgeFactory();
+        Edge e1 = edgeFactory.makeEdge(n1.getIndex(), n2.getIndex(), 5);
+        Edge e2 = edgeFactory.makeEdge(n1.getIndex(), n3.getIndex(), 5);
         g.addEdge(e1); g.addEdge(e2);
 
         // Checks adjacency of n1.
@@ -79,7 +83,9 @@ class GraphTest {
         Node n1 = nodeFactory.makeNode(0);
         Node n2 = nodeFactory.makeNode(1);
         g.addNode(n1); g.addNode(n2);
-        Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), 5);
+
+        EdgeFactory edgeFactory = new EdgeFactory();
+        Edge e1 = edgeFactory.makeEdge(n1.getIndex(), n2.getIndex(), 5);
         g.addEdge(e1);
 
         List<Edge> edges = g.getEdges();
@@ -105,12 +111,15 @@ class GraphTest {
         Graph g = new Graph();
         List<Node> nodes = addNodesToGraph(g);
         List<Edge> edges = new ArrayList<>();
+        EdgeFactory edgeFactory = new EdgeFactory();
 
         // Adds edges in a straight line with weights equal to the order they were added in.
         for (int i = 1; i < nodes.size(); i++){
             Node n1 = nodes.get(i - 1);
             Node n2 = nodes.get(i);
-            Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), i);
+
+
+            Edge e1 = edgeFactory.makeEdge(n1.getIndex(), n2.getIndex(), i);
             edges.add(e1);
             g.addEdge(e1);
         }

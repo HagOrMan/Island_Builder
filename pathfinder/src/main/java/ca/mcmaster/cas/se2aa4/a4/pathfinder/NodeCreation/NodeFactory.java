@@ -1,4 +1,4 @@
-package ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory;
+package ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation;
 
 import java.util.Collections;
 import java.util.HashSet;

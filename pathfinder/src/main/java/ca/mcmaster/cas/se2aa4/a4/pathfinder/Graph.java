@@ -1,6 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder;
 
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.Edge;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 
 import java.util.*;
 
@@ -8,14 +9,12 @@ import java.util.*;
 
 public class Graph {
 
-    private Map<Node, List<Node>> nodes;
-    private List<Edge> edges;
-    private Map<Edge, Integer> weights;
+    private final Map<Node, List<Node>> nodes;
+    private final List<Edge> edges;
 
     public Graph(){
         nodes = new Hashtable<>();
         edges = new ArrayList<>();
-        weights = new HashMap<>();
     }
 
     public void addNode(Node n){
@@ -31,7 +30,6 @@ public class Graph {
         List<Node> adjacent = nodes.get(n1);
         adjacent.add(n2);
         edges.add(edge);
-        weights.put(edge, edge.getWeight());
     }
 
     // Get list of connected node indices to an input node index.

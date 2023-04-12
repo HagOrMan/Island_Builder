@@ -1,7 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms;
 
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 
 import java.util.Map;
 

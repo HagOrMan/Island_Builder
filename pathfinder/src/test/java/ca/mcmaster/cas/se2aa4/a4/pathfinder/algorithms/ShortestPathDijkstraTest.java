@@ -1,9 +1,10 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms;
 
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.Edge;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.Edge;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.EdgeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.NodeFactory;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -16,6 +17,7 @@ class ShortestPathDijkstraTest {
     void findPath5Nodes() {
         Graph g = new Graph();
         NodeFactory nodeFactory = new NodeFactory();
+        EdgeFactory edgeFactory = new EdgeFactory();
 
         Node n0 = nodeFactory.makeNode(0);
         Node n1 = nodeFactory.makeNode(1);
@@ -24,12 +26,12 @@ class ShortestPathDijkstraTest {
         Node n4 = nodeFactory.makeNode(4);
 
         g.addNode(n0); g.addNode(n1); g.addNode(n2); g.addNode(n3); g.addNode(n4);
-        Edge e02 = new Edge(n0.getIndex(), n2.getIndex(), 2); Edge e20 = new Edge(n2.getIndex(), n0.getIndex(), 2);
-        Edge e01 = new Edge(n0.getIndex(), n1.getIndex(), 5); Edge e10 = new Edge(n1.getIndex(), n0.getIndex(), 5);
-        Edge e04 = new Edge(n0.getIndex(), n4.getIndex(), 6); Edge e40 = new Edge(n4.getIndex(), n0.getIndex(), 6);
-        Edge e24 = new Edge(n2.getIndex(), n4.getIndex(), 1); Edge e42 = new Edge(n4.getIndex(), n2.getIndex(), 1);
-        Edge e23 = new Edge(n2.getIndex(), n3.getIndex(), 1); Edge e32 = new Edge(n3.getIndex(), n2.getIndex(), 1);
-        Edge e31 = new Edge(n3.getIndex(), n1.getIndex(), 1); Edge e13 = new Edge(n1.getIndex(), n3.getIndex(), 1);
+        Edge e02 = edgeFactory.makeEdge(n0.getIndex(), n2.getIndex(), 2); Edge e20 = edgeFactory.makeEdge(n2.getIndex(), n0.getIndex(), 2);
+        Edge e01 = edgeFactory.makeEdge(n0.getIndex(), n1.getIndex(), 5); Edge e10 = edgeFactory.makeEdge(n1.getIndex(), n0.getIndex(), 5);
+        Edge e04 = edgeFactory.makeEdge(n0.getIndex(), n4.getIndex(), 6); Edge e40 = edgeFactory.makeEdge(n4.getIndex(), n0.getIndex(), 6);
+        Edge e24 = edgeFactory.makeEdge(n2.getIndex(), n4.getIndex(), 1); Edge e42 = edgeFactory.makeEdge(n4.getIndex(), n2.getIndex(), 1);
+        Edge e23 = edgeFactory.makeEdge(n2.getIndex(), n3.getIndex(), 1); Edge e32 = edgeFactory.makeEdge(n3.getIndex(), n2.getIndex(), 1);
+        Edge e31 = edgeFactory.makeEdge(n3.getIndex(), n1.getIndex(), 1); Edge e13 = edgeFactory.makeEdge(n1.getIndex(), n3.getIndex(), 1);
 
         g.addEdge(e02); g.addEdge(e20);
         g.addEdge(e01); g.addEdge(e10);
@@ -65,13 +67,14 @@ class ShortestPathDijkstraTest {
     void findPath2Nodes() {
         Graph g = new Graph();
         NodeFactory nodeFactory = new NodeFactory();
+        EdgeFactory edgeFactory = new EdgeFactory();
 
         Node n0 = nodeFactory.makeNode(0);
         Node n1 = nodeFactory.makeNode(1);
 
         g.addNode(n0); g.addNode(n1);
-        Edge e1 = new Edge(n0.getIndex(), n1.getIndex(), 5);
-        Edge e2 = new Edge(n1.getIndex(), n0.getIndex(), 5);
+        Edge e1 = edgeFactory.makeEdge(n0.getIndex(), n1.getIndex(), 5);
+        Edge e2 = edgeFactory.makeEdge(n1.getIndex(), n0.getIndex(), 5);
         g.addEdge(e1); g.addEdge(e2);
 
         Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);

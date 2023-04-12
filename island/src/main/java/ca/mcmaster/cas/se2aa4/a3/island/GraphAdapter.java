@@ -2,7 +2,7 @@ package ca.mcmaster.cas.se2aa4.a3.island;
 
 
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 
 public class GraphAdapter {
 
