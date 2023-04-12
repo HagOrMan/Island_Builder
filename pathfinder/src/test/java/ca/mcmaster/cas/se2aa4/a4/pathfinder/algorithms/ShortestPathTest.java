@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ShortestPathTest {
 
     @Test
-    void findPath() {
+    void findPath5Nodes() {
         Graph g = new Graph();
 
         Node n0 = new Node(0);
@@ -34,6 +34,35 @@ class ShortestPathTest {
         assertEquals(paths.get(n2), n0);
         assertEquals(paths.get(n3), n2);
         assertEquals(paths.get(n4), n2);
+
+    }
+
+    @Test
+    void findPath1Node() {
+        Graph g = new Graph();
+
+        Node n0 = new Node(0);
+
+        g.addNode(n0);
+
+        Map<Node, Node> paths = new ShortestPath().findPath(g, n0);
+        assertEquals(paths.get(n0), n0);
+
+    }
+
+    @Test
+    void findPath2Nodes() {
+        Graph g = new Graph();
+
+        Node n0 = new Node(0);
+        Node n1 = new Node(1);
+
+        g.addNode(n0); g.addNode(n1);
+        g.addEdge(n0, n1, 5); g.addEdge(n1, n0, 5);
+
+        Map<Node, Node> paths = new ShortestPath().findPath(g, n0);
+        assertEquals(paths.get(n0), n0);
+        assertEquals(paths.get(n1), n0);
 
     }
 
