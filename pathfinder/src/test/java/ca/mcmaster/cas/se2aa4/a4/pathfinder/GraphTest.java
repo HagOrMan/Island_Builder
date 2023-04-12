@@ -1,5 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder;
 
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.NodeFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,11 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class GraphTest {
 
     private List<Node> addNodesToGraph(Graph g){
-        Node n1 = new Node(0);
-        Node n2 = new Node(1);
-        Node n3 = new Node(2);
-        Node n4 = new Node(3);
-        Node n5 = new Node(4);
+
+        NodeFactory nodeFactory = new NodeFactory();
+        Node n1 = nodeFactory.makeNode(0);
+        Node n2 = nodeFactory.makeNode(1);
+        Node n3 = nodeFactory.makeNode(2);
+        Node n4 = nodeFactory.makeNode(3);
+        Node n5 = nodeFactory.makeNode(4);
 
         g.addNode(n1);
         g.addNode(n2);
@@ -38,9 +42,10 @@ class GraphTest {
     void getAdjacentNodes() {
 
         Graph g = new Graph();
-        Node n1 = new Node(0);
-        Node n2 = new Node(1);
-        Node n3 = new Node(2);
+        NodeFactory nodeFactory = new NodeFactory();
+        Node n1 = nodeFactory.makeNode(0);
+        Node n2 = nodeFactory.makeNode(1);
+        Node n3 = nodeFactory.makeNode(2);
 
         g.addNode(n1); g.addNode(n2); g.addNode(n3);
         Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), 5);
@@ -70,8 +75,9 @@ class GraphTest {
     void getWeight() {
 
         Graph g = new Graph();
-        Node n1 = new Node(0);
-        Node n2 = new Node(1);
+        NodeFactory nodeFactory = new NodeFactory();
+        Node n1 = nodeFactory.makeNode(0);
+        Node n2 = nodeFactory.makeNode(1);
         g.addNode(n1); g.addNode(n2);
         Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), 5);
         g.addEdge(e1);

@@ -2,7 +2,8 @@ package ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms;
 
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Edge;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.NodeFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -14,12 +15,13 @@ class ShortestPathDijkstraTest {
     @Test
     void findPath5Nodes() {
         Graph g = new Graph();
+        NodeFactory nodeFactory = new NodeFactory();
 
-        Node n0 = new Node(0);
-        Node n1 = new Node(1);
-        Node n2 = new Node(2);
-        Node n3 = new Node(3);
-        Node n4 = new Node(4);
+        Node n0 = nodeFactory.makeNode(0);
+        Node n1 = nodeFactory.makeNode(1);
+        Node n2 = nodeFactory.makeNode(2);
+        Node n3 = nodeFactory.makeNode(3);
+        Node n4 = nodeFactory.makeNode(4);
 
         g.addNode(n0); g.addNode(n1); g.addNode(n2); g.addNode(n3); g.addNode(n4);
         Edge e02 = new Edge(n0.getIndex(), n2.getIndex(), 2); Edge e20 = new Edge(n2.getIndex(), n0.getIndex(), 2);
@@ -48,8 +50,9 @@ class ShortestPathDijkstraTest {
     @Test
     void findPath1Node() {
         Graph g = new Graph();
+        NodeFactory nodeFactory = new NodeFactory();
 
-        Node n0 = new Node(0);
+        Node n0 = nodeFactory.makeNode(0);
 
         g.addNode(n0);
 
@@ -61,9 +64,10 @@ class ShortestPathDijkstraTest {
     @Test
     void findPath2Nodes() {
         Graph g = new Graph();
+        NodeFactory nodeFactory = new NodeFactory();
 
-        Node n0 = new Node(0);
-        Node n1 = new Node(1);
+        Node n0 = nodeFactory.makeNode(0);
+        Node n1 = nodeFactory.makeNode(1);
 
         g.addNode(n0); g.addNode(n1);
         Edge e1 = new Edge(n0.getIndex(), n1.getIndex(), 5);

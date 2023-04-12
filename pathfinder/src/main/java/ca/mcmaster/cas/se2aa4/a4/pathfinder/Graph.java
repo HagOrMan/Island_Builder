@@ -1,5 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder;
 
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.ItemFactory.Node;
+
 import java.util.*;
 
 // node will hold index, adapter takes in vertex index and sends that to here to check against a node
