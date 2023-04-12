@@ -11,12 +11,12 @@ public class ShortestPathDijkstra implements PathFinding{
 
         // Creates map for path and sets each value to null except the source node path is itself.
         Map<Node, Node> path = new HashMap<>();
-        fillPathKeys(path, graph);
+        fillPathKeys(path, graph.getNodes());
         path.replace(source, source);
 
         // Creates cost map and fills with infinity, except source cost is 0.
         Map<Node, Integer> cost = new HashMap<>();
-        fillCostKeys(cost, graph);
+        fillCostKeys(cost, graph.getNodes());
         cost.replace(source, 0);
 
         // Initializes priority queue and adds source to queue.
@@ -54,14 +54,14 @@ public class ShortestPathDijkstra implements PathFinding{
     }
 
     // Fills path map with empty values for path to each node.
-    private void fillPathKeys(Map<Node, Node> path, Graph graph){
-        for (Node n : graph.getNodes()){
+    private void fillPathKeys(Map<Node, Node> path, Set<Node> nodes){
+        for (Node n : nodes){
             path.put(n, null);
         }
     }
     // Fills cost map with max cost for each node.
-    private void fillCostKeys(Map<Node, Integer> path, Graph graph){
-        for (Node n : graph.getNodes()){
+    private void fillCostKeys(Map<Node, Integer> path, Set<Node> nodes){
+        for (Node n : nodes){
             path.put(n, Integer.MAX_VALUE);
         }
     }
