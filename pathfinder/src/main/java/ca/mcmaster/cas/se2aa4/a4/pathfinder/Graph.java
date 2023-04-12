@@ -23,12 +23,13 @@ public class Graph {
     }
 
     // Adds an edge to adjacency list and makes a new edge for it.
-    public void addEdge(Node n1, Node n2, int weight){
+    public void addEdge(Edge edge){
+        Node n1 = getNode(edge.getN1Idx());
+        Node n2 = getNode(edge.getN2Idx());
         List<Node> adjacent = nodes.get(n1);
         adjacent.add(n2);
-        Edge edge = new Edge(n1.getIndex(), n2.getIndex(), weight);
         edges.add(edge);
-        weights.put(edge, weight);
+        weights.put(edge, edge.getWeight());
     }
 
     // Get list of connected node indices to an input node index.
@@ -51,5 +52,15 @@ public class Graph {
     }
 
     public List<Edge> getEdges() { return edges; }
+
+    // Gets node from index.
+    private Node getNode(int index){
+        for (Node n : getNodes()){
+            if (n.equals(index)){
+                return n;
+            }
+        }
+        return null;
+    }
 
 }

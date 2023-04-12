@@ -43,7 +43,9 @@ class GraphTest {
         Node n3 = new Node(2);
 
         g.addNode(n1); g.addNode(n2); g.addNode(n3);
-        g.addEdge(n1, n2, 5); g.addEdge(n1, n3, 5);
+        Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), 5);
+        Edge e2 = new Edge(n1.getIndex(), n3.getIndex(), 5);
+        g.addEdge(e1); g.addEdge(e2);
 
         // Checks adjacency of n1.
         List<Node> adjacent = g.getAdjacentNodes(n1);
@@ -71,7 +73,8 @@ class GraphTest {
         Node n1 = new Node(0);
         Node n2 = new Node(1);
         g.addNode(n1); g.addNode(n2);
-        g.addEdge(n1, n2, 5);
+        Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), 5);
+        g.addEdge(e1);
 
         List<Edge> edges = g.getEdges();
         assertEquals(5, edges.get(0).getWeight());
@@ -101,8 +104,9 @@ class GraphTest {
         for (int i = 1; i < nodes.size(); i++){
             Node n1 = nodes.get(i - 1);
             Node n2 = nodes.get(i);
-            edges.add(new Edge(n1.getIndex(), n2.getIndex(), i));
-            g.addEdge(n1, n2, i);
+            Edge e1 = new Edge(n1.getIndex(), n2.getIndex(), i);
+            edges.add(e1);
+            g.addEdge(e1);
         }
 
         // Tests to make sure each edge in edges has an edge in graph with same nodes in it.
