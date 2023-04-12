@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ShortestPathTest {
+class ShortestPathDijkstraTest {
 
     @Test
     void findPath5Nodes() {
@@ -28,7 +28,7 @@ class ShortestPathTest {
         g.addEdge(n2, n3, 1); g.addEdge(n3, n2, 1);
         g.addEdge(n3, n1, 1); g.addEdge(n1, n3, 1);
 
-        Map<Node, Node> paths = new ShortestPath().findPath(g, n0);
+        Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
         assertEquals(paths.get(n0), n0);
         assertEquals(paths.get(n1), n3);
         assertEquals(paths.get(n2), n0);
@@ -45,7 +45,7 @@ class ShortestPathTest {
 
         g.addNode(n0);
 
-        Map<Node, Node> paths = new ShortestPath().findPath(g, n0);
+        Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
         assertEquals(paths.get(n0), n0);
 
     }
@@ -60,7 +60,7 @@ class ShortestPathTest {
         g.addNode(n0); g.addNode(n1);
         g.addEdge(n0, n1, 5); g.addEdge(n1, n0, 5);
 
-        Map<Node, Node> paths = new ShortestPath().findPath(g, n0);
+        Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
         assertEquals(paths.get(n0), n0);
         assertEquals(paths.get(n1), n0);
 

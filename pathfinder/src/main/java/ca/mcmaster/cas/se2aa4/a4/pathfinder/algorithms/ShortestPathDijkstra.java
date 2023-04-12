@@ -5,7 +5,7 @@ import ca.mcmaster.cas.se2aa4.a4.pathfinder.Node;
 
 import java.util.*;
 
-public class ShortestPath implements PathFinding{
+public class ShortestPathDijkstra implements PathFinding{
     @Override
     public Map<Node, Node> findPath(Graph graph, Node source) {
 
