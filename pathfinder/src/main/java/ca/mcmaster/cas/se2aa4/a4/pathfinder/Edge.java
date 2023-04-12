@@ -17,7 +17,7 @@ public class Edge {
     }
 
     public boolean equals(int n1Idx, int n2Idx) {
-        return (this.n1Idx == n1Idx && this.n2Idx == n2Idx) || (this.n2Idx == n1Idx && this.n1Idx == n2Idx);
+        return this.n1Idx == n1Idx && this.n2Idx == n2Idx;
     }
 
     public int getN1Idx() {
