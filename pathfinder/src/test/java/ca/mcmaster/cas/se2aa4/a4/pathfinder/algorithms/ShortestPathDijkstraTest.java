@@ -5,6 +5,7 @@ import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.EdgeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -13,21 +14,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShortestPathDijkstraTest {
 
+    private Graph g;
+    private EdgeFactory edgeFactory;
+    private Node n0, n1, n2, n3, n4;
+    private Edge e01, e10;
+
+    @BeforeEach
+    public void setUp(){
+        g = new Graph();
+        NodeFactory nodeFactory = new NodeFactory();
+        edgeFactory = new EdgeFactory();
+
+        n0 = nodeFactory.makeNode(0);
+        n1 = nodeFactory.makeNode(1);
+        n2 = nodeFactory.makeNode(2);
+        n3 = nodeFactory.makeNode(3);
+        n4 = nodeFactory.makeNode(4);
+
+
+        e01 = edgeFactory.makeEdge(n0.getIndex(), n1.getIndex(), 5); e10 = edgeFactory.makeEdge(n1.getIndex(), n0.getIndex(), 5);
+
+    }
+
     @Test
     void findPath5Nodes() {
-        Graph g = new Graph();
-        NodeFactory nodeFactory = new NodeFactory();
-        EdgeFactory edgeFactory = new EdgeFactory();
-
-        Node n0 = nodeFactory.makeNode(0);
-        Node n1 = nodeFactory.makeNode(1);
-        Node n2 = nodeFactory.makeNode(2);
-        Node n3 = nodeFactory.makeNode(3);
-        Node n4 = nodeFactory.makeNode(4);
+        g = new Graph();
+        edgeFactory = new EdgeFactory();
 
         g.addNode(n0); g.addNode(n1); g.addNode(n2); g.addNode(n3); g.addNode(n4);
         Edge e02 = edgeFactory.makeEdge(n0.getIndex(), n2.getIndex(), 2); Edge e20 = edgeFactory.makeEdge(n2.getIndex(), n0.getIndex(), 2);
-        Edge e01 = edgeFactory.makeEdge(n0.getIndex(), n1.getIndex(), 5); Edge e10 = edgeFactory.makeEdge(n1.getIndex(), n0.getIndex(), 5);
         Edge e04 = edgeFactory.makeEdge(n0.getIndex(), n4.getIndex(), 6); Edge e40 = edgeFactory.makeEdge(n4.getIndex(), n0.getIndex(), 6);
         Edge e24 = edgeFactory.makeEdge(n2.getIndex(), n4.getIndex(), 1); Edge e42 = edgeFactory.makeEdge(n4.getIndex(), n2.getIndex(), 1);
         Edge e23 = edgeFactory.makeEdge(n2.getIndex(), n3.getIndex(), 1); Edge e32 = edgeFactory.makeEdge(n3.getIndex(), n2.getIndex(), 1);
@@ -51,10 +66,7 @@ class ShortestPathDijkstraTest {
 
     @Test
     void findPath1Node() {
-        Graph g = new Graph();
-        NodeFactory nodeFactory = new NodeFactory();
-
-        Node n0 = nodeFactory.makeNode(0);
+        g = new Graph();
 
         g.addNode(n0);
 
@@ -65,17 +77,10 @@ class ShortestPathDijkstraTest {
 
     @Test
     void findPath2Nodes() {
-        Graph g = new Graph();
-        NodeFactory nodeFactory = new NodeFactory();
-        EdgeFactory edgeFactory = new EdgeFactory();
-
-        Node n0 = nodeFactory.makeNode(0);
-        Node n1 = nodeFactory.makeNode(1);
+        g = new Graph();
 
         g.addNode(n0); g.addNode(n1);
-        Edge e1 = edgeFactory.makeEdge(n0.getIndex(), n1.getIndex(), 5);
-        Edge e2 = edgeFactory.makeEdge(n1.getIndex(), n0.getIndex(), 5);
-        g.addEdge(e1); g.addEdge(e2);
+        g.addEdge(e10); g.addEdge(e01);
 
         Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
         assertEquals(n0, paths.get(n0));
