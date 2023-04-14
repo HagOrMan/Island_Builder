@@ -7,9 +7,17 @@ import java.util.Set;
 public class NodeFactory {
 
     private final Set<Integer> indices;
+    private static NodeFactory uniqueInstance = null;
 
-    public NodeFactory(){
+    private NodeFactory(){
         indices = new HashSet<>();
+    }
+
+    public static NodeFactory getInstance(){
+        if (uniqueInstance == null){
+            uniqueInstance = new NodeFactory();
+        }
+        return uniqueInstance;
     }
 
     public Node makeNode(int index){

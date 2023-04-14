@@ -22,8 +22,8 @@ class ShortestPathDijkstraTest {
     @BeforeEach
     public void setUp(){
         g = new Graph();
-        NodeFactory nodeFactory = new NodeFactory();
-        edgeFactory = new EdgeFactory();
+        NodeFactory nodeFactory = NodeFactory.getInstance();
+        edgeFactory = EdgeFactory.getInstance();
 
         n0 = nodeFactory.makeNode(0);
         n1 = nodeFactory.makeNode(1);
@@ -39,7 +39,7 @@ class ShortestPathDijkstraTest {
     @Test
     void findPath5Nodes() {
         g = new Graph();
-        edgeFactory = new EdgeFactory();
+        edgeFactory = EdgeFactory.getInstance();
 
         g.addNode(n0); g.addNode(n1); g.addNode(n2); g.addNode(n3); g.addNode(n4);
         Edge e02 = edgeFactory.makeEdge(n0.getIndex(), n2.getIndex(), 2); Edge e20 = edgeFactory.makeEdge(n2.getIndex(), n0.getIndex(), 2);

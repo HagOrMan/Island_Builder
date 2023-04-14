@@ -7,9 +7,17 @@ public class EdgeFactory {
 
 
     private final List<Edge> createdEdges;
+    private static EdgeFactory uniqueInstance = null;
 
-    public EdgeFactory(){
+    private EdgeFactory(){
         createdEdges = new ArrayList<>();
+    }
+
+    public static EdgeFactory getInstance(){
+        if (uniqueInstance == null){
+            uniqueInstance = new EdgeFactory();
+        }
+        return uniqueInstance;
     }
 
     /**

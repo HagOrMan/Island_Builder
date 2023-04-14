@@ -21,8 +21,8 @@ class GraphTest {
 
     @BeforeEach public void setUp(){
         g = new Graph();
-        NodeFactory nodeFactory = new NodeFactory();
-        edgeFactory = new EdgeFactory();
+        NodeFactory nodeFactory = NodeFactory.getInstance();
+        edgeFactory = EdgeFactory.getInstance();
 
         n0 = nodeFactory.makeNode(0);
         n1 = nodeFactory.makeNode(1);
@@ -58,7 +58,7 @@ class GraphTest {
 
         g.addNode(n1); g.addNode(n2); g.addNode(n3);
 
-        edgeFactory = new EdgeFactory();
+        EdgeFactory.getInstance();
         Edge e1 = edgeFactory.makeEdge(n1.getIndex(), n2.getIndex(), 5);
         Edge e2 = edgeFactory.makeEdge(n1.getIndex(), n3.getIndex(), 5);
         g.addEdge(e1); g.addEdge(e2);
@@ -88,7 +88,7 @@ class GraphTest {
         g = new Graph();
         g.addNode(n1); g.addNode(n2);
 
-        edgeFactory = new EdgeFactory();
+        edgeFactory = EdgeFactory.getInstance();
         Edge e1 = edgeFactory.makeEdge(n1.getIndex(), n2.getIndex(), 5);
         g.addEdge(e1);
 
@@ -115,7 +115,7 @@ class GraphTest {
         g = new Graph();
         List<Node> nodes = addNodesToGraph(g);
         List<Edge> edges = new ArrayList<>();
-        edgeFactory = new EdgeFactory();
+        edgeFactory = EdgeFactory.getInstance();
 
         // Adds edges in a straight line with weights equal to the order they were added in.
         for (int i = 1; i < nodes.size(); i++){
