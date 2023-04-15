@@ -1,4 +1,4 @@
-package ca.mcmaster.cas.se2aa4.a4.pathfinder;
+package ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation;
 
 public class Edge {
 
@@ -6,7 +6,7 @@ public class Edge {
     private final int weight;
 
 
-    public Edge(int n1Idx, int n2Idx, int weight){
+    Edge(int n1Idx, int n2Idx, int weight){
         this.n1Idx = n1Idx;
         this.n2Idx = n2Idx;
         this.weight = weight;

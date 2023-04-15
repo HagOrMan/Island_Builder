@@ -1,13 +1,15 @@
 package ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms;
 
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
-import ca.mcmaster.cas.se2aa4.a4.pathfinder.Node;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.MyGraph;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 
 import java.util.*;
 
 public class ShortestPathDijkstra implements PathFinding{
     @Override
-    public Map<Node, Node> findPath(Graph graph, Node source) {
+    public Map<Node, Node> findPath(MyGraph graph, Node source) {
+
+        testGraphContainsSource(graph, source);
 
         // Creates map for path and sets each value to null except the source node path is itself.
         Map<Node, Node> path = new HashMap<>();
@@ -45,6 +47,13 @@ public class ShortestPathDijkstra implements PathFinding{
         }
 
         return path;
+    }
+
+    private void testGraphContainsSource(MyGraph graph, Node source){
+        Set<Node> nodes = graph.getNodes();
+        if (!nodes.contains(source)){
+            throw new IllegalArgumentException("Graph must contain input source node");
+        }
     }
 
     // Updates the queue for a new node, first checking if it already exists and removing it if so.
