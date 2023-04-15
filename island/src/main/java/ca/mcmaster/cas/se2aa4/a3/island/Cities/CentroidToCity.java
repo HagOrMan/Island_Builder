@@ -7,20 +7,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Takes in a vertex and paints it as a city based on its type.
-public class VertexToCity {
+public class CentroidToCity {
 
     // Mappings of each city type to a given vertex size and colour.
     private final Map<CityOption, Integer> citySizes;
     private final Map<CityOption, Color> cityColours;
 
-    public VertexToCity(){
+    public CentroidToCity(){
         citySizes = makeCitySizes();
         cityColours = makeCityColours();
     }
 
     private Map<CityOption, Integer> makeCitySizes(){
         Map<CityOption, Integer> options = new HashMap<>();
-        options.put(CityOption.CAPITAL, 7);
+        options.put(CityOption.CAPITAL, 10);
         options.put(CityOption.CITY, 7);
         options.put(CityOption.VILLAGE, 5);
         options.put(CityOption.HAMLET, 3);

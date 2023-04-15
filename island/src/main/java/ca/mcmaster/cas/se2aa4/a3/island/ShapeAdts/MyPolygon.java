@@ -42,6 +42,7 @@ public class MyPolygon implements MyShape {
     public void changeCentroidThickness(int thickness){
         centroid.setThick(thickness);
     }
+    public int getCentroidIdx(){ return centroid.getIndex(); }
 
     // Orders the segments and sets the vertices list.
     private void orderSegments (){

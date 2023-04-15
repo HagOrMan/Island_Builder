@@ -1,6 +1,5 @@
 package ca.mcmaster.cas.se2aa4.a3.island.Builders;
 
-import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityMaker;
 import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.Cities.MyCityPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.Elevation.BaseElevation;
@@ -96,8 +95,8 @@ public class IslandBuilder extends AbstractBuilder {
     }
 
     public void generateCities(int numCities){
-        MyCityPainter cityMaker = new CityPainter();
-        
+        MyCityPainter cityPainter = new CityPainter();
+        cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices);
     }
 
     private void normalizeVertices(){
