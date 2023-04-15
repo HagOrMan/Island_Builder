@@ -41,6 +41,7 @@ public class CentroidToCity {
         vertex.setThick(citySizes.get(option));
         Color colour = cityColours.get(option);
         vertex.changeColor(colour.getRed() + "," + colour.getGreen() + "," + colour.getBlue());
+        vertex.makeVertexCity(option);
     }
 
 }
