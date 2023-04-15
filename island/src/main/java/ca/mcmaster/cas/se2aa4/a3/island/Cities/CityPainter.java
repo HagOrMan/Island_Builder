@@ -2,7 +2,6 @@ package ca.mcmaster.cas.se2aa4.a3.island.Cities;
 
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
-import org.locationtech.jts.geom.Point;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +18,7 @@ public class CityPainter implements MyCityPainter{
         Set<Integer> polygonsWithIndices = new HashSet<>();
         int islandPolygons = countIslandPolygons(polygons);
 
-        int index = -1;
+        int index;
         int centroidIdx;
         MyPolygon p;
 
@@ -37,6 +36,7 @@ public class CityPainter implements MyCityPainter{
             centroidIdx = p.getCentroidIdx();
             addVertexAsCity(vertices.get(centroidIdx), rand.nextInt(100));
         }
+
     }
 
     // Based on the population, gets the city type, and converts the vertex to a city based on that.
