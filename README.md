@@ -2,6 +2,8 @@
 
   - Kyle Hagerman [hagermak@mcmaster.ca]
 
+Check A3 Information --> Legend for information about command line arguments and specifying the number of cities.
+Note: Capital city is decided based on proximity to center of island.
 
 # A3 Information
 
@@ -57,6 +59,7 @@ When you develop features and enrich the product, remember that you have first t
 - -biome = Whittaker diagram to take biomes from when visualizing (defaults to only visualizing with general green land tiles)
 - -lake = maximum number of lakes to generate (default = 0)
 - -river = maximum number of rivers to generate (default = 0)
+- -city = number of cities to generate (default = 0)
 
 ### List of valid shapes
 1. 'circle' (default)
