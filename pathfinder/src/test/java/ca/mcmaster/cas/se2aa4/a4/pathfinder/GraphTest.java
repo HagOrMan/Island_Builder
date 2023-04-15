@@ -32,7 +32,7 @@ class GraphTest {
 
     }
 
-    private List<Node> addNodesToGraph(MyGraph g){
+    private List<Node> addNodesToGraph(){
 
         g.addNode(n0);
         g.addNode(n1);
@@ -54,11 +54,8 @@ class GraphTest {
     @Test
     void getAdjacentNodes() {
 
-        g = new Graph();
-
         g.addNode(n1); g.addNode(n2); g.addNode(n3);
 
-        EdgeFactory.getInstance();
         Edge e1 = edgeFactory.makeEdge(n1.getIndex(), n2.getIndex(), 5);
         Edge e2 = edgeFactory.makeEdge(n1.getIndex(), n3.getIndex(), 5);
         g.addEdge(e1); g.addEdge(e2);
@@ -84,8 +81,6 @@ class GraphTest {
     // Tests that weights are added properly to graph.
     @Test
     void getWeight() {
-
-        g = new Graph();
         g.addNode(n1); g.addNode(n2);
 
         edgeFactory = EdgeFactory.getInstance();
@@ -100,9 +95,11 @@ class GraphTest {
     // Tests that nodes can be added to the graph properly.
     @Test
     void getNodes() {
-        g = new Graph();
-        List<Node> nodes = addNodesToGraph(g);
         Set<Node> graphNodes = g.getNodes();
+        assertTrue(graphNodes.isEmpty());
+
+        List<Node> nodes = addNodesToGraph();
+        graphNodes = g.getNodes();
 
         for (Node n : nodes){
             assertTrue(graphNodes.contains(n));
@@ -112,8 +109,7 @@ class GraphTest {
     // Tests that edges can be added to the graph properly.
     @Test
     void getEdges() {
-        g = new Graph();
-        List<Node> nodes = addNodesToGraph(g);
+        List<Node> nodes = addNodesToGraph();
         List<Edge> edges = new ArrayList<>();
         edgeFactory = EdgeFactory.getInstance();
 
