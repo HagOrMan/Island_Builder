@@ -97,11 +97,15 @@ public class IslandBuilder extends AbstractBuilder {
     }
 
     public void generateCities(int numCities, Random rand){
+
+        // Randomly adds cities to map based on input.
         MyCityPainter cityPainter = new CityPainter();
         normalizeVertices();
         cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices, rand);
+
+        // Makes a capital city and saves the vertex where this is found.
         MyCapitalCityMaker capitalCityMaker = new CapitalCityCreator();
-        capitalCityMaker.makeCapitalCity(findIslandVertices());
+        MyVertex capital = capitalCityMaker.makeCapitalCity(findIslandVertices(), findPolygonsWithinIsland(), islandShape);
     }
 
     private void normalizeVertices(){
