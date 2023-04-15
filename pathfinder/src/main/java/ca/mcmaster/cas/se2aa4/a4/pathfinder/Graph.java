@@ -7,7 +7,7 @@ import java.util.*;
 
 // node will hold index, adapter takes in vertex index and sends that to here to check against a node
 
-public class Graph {
+public class Graph implements MyGraph {
 
     private final Map<Node, List<Node>> nodes;
     private final List<Edge> edges;

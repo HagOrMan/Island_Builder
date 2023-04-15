@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GraphTest {
 
-    private Graph g;
+    private MyGraph g;
     private EdgeFactory edgeFactory;
     private Node n0, n1, n2, n3, n4;
 
@@ -32,7 +32,7 @@ class GraphTest {
 
     }
 
-    private List<Node> addNodesToGraph(Graph g){
+    private List<Node> addNodesToGraph(MyGraph g){
 
         g.addNode(n0);
         g.addNode(n1);

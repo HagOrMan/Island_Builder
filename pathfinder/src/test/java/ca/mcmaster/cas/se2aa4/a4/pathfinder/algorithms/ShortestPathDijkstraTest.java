@@ -3,6 +3,7 @@ package ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.Edge;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.EdgeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.MyGraph;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShortestPathDijkstraTest {
 
-    private Graph g;
+    private MyGraph g;
     private EdgeFactory edgeFactory;
     private Node n0, n1, n2, n3, n4;
     private Edge e01, e10;
