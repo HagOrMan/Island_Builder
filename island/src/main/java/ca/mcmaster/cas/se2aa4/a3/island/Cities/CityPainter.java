@@ -15,9 +15,8 @@ public class CityPainter implements MyCityPainter{
     private final CitySizeDecider cityDecider = new CitySizeDecider();
 
     // Take in polygons within island and number of cities to make, and randomly makes vertices in island as cities.
-    public void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices){
+    public void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices, Random rand){
         Set<Integer> polygonsWithIndices = new HashSet<>();
-        Random rand = new Random();
         int islandPolygons = countIslandPolygons(polygons);
 
         int index = -1;

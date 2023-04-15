@@ -94,10 +94,10 @@ public class IslandBuilder extends AbstractBuilder {
         }
     }
 
-    public void generateCities(int numCities){
+    public void generateCities(int numCities, Random rand){
         MyCityPainter cityPainter = new CityPainter();
         normalizeVertices();
-        cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices);
+        cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices, rand);
     }
 
     private void normalizeVertices(){
