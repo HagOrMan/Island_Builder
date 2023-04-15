@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class CityPainter {
+public class CityPainter implements MyCityPainter{
 
     // Take in polygons within island and number of cities to make, and randomly makes vertices in island as cities.
     public void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices){
