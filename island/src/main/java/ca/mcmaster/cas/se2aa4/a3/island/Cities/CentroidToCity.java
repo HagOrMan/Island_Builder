@@ -30,9 +30,9 @@ public class CentroidToCity {
     private Map<CityOption, Color> makeCityColours(){
         Map<CityOption, Color> options = new HashMap<>();
         options.put(CityOption.CAPITAL, new Color(0xD2AC2A));
-        options.put(CityOption.CITY, new Color(0x38752F));
-        options.put(CityOption.VILLAGE, new Color(0x204A6C));
-        options.put(CityOption.HAMLET, new Color(0x4E1CA4));
+        options.put(CityOption.CITY, new Color(0xDE41DD));
+        options.put(CityOption.VILLAGE, new Color(0xFCB28C));
+        options.put(CityOption.HAMLET, new Color(0xFF5C5C));
         return options;
     }
 

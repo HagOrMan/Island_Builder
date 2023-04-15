@@ -96,12 +96,13 @@ public class IslandBuilder extends AbstractBuilder {
 
     public void generateCities(int numCities){
         MyCityPainter cityPainter = new CityPainter();
+        normalizeVertices();
         cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices);
     }
 
     private void normalizeVertices(){
         for (MyPolygon p : myPolygons){
-            p.changeCentroidColour("0, 0, 0, 0");
+            p.changeCentroidColour("0,0,0,0");
         }
         for (MyVertex v : myVertices){
             v.setThick(1);
