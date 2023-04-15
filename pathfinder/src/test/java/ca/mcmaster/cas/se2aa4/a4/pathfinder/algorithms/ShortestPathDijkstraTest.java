@@ -66,6 +66,8 @@ class ShortestPathDijkstraTest {
         assertEquals(n2, paths.get(n3));
         assertEquals(n2, paths.get(n4));
 
+        assertEquals(4, shortestPath.longestPathDistance());
+
     }
 
     @Test
@@ -76,6 +78,7 @@ class ShortestPathDijkstraTest {
 
         Map<Node, Node> paths = shortestPath.findPath(g, n0);
         assertEquals(n0, paths.get(n0));
+        assertEquals(0, shortestPath.longestPathDistance());
 
     }
 
@@ -89,6 +92,7 @@ class ShortestPathDijkstraTest {
         Map<Node, Node> paths = shortestPath.findPath(g, n0);
         assertEquals(n0, paths.get(n0));
         assertEquals(n0, paths.get(n1));
+        assertEquals(5, shortestPath.longestPathDistance());
 
     }
 
@@ -100,6 +104,7 @@ class ShortestPathDijkstraTest {
         String actualMessage = exception.getMessage();
 
         assertEquals(expectedMessage, actualMessage);
+        assertEquals(0, shortestPath.longestPathDistance());
     }
 
 }

@@ -8,5 +8,5 @@ import java.util.Map;
 public interface PathFinding {
 
     Map<Node, Node> findPath(MyGraph graph, Node start);
-
+    int longestPathDistance();
 }

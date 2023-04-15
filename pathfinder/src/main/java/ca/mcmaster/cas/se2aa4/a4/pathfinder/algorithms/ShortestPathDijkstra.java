@@ -6,6 +6,13 @@ import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 import java.util.*;
 
 public class ShortestPathDijkstra implements PathFinding{
+
+    private int longestPath = 0;
+
+    public int longestPathDistance(){
+        return longestPath;
+    }
+
     @Override
     public Map<Node, Node> findPath(MyGraph graph, Node source) {
 
@@ -46,7 +53,18 @@ public class ShortestPathDijkstra implements PathFinding{
 
         }
 
+        updateLongestPath(cost);
+
         return path;
+    }
+
+    // Updates longest path out of the shortest paths found for this source node.
+    private void updateLongestPath(Map<Node, Integer> cost){
+        int c;
+        for (Node key : cost.keySet()){
+            c = cost.get(key);
+            longestPath = Math.max(longestPath, c);
+        }
     }
 
     private void testGraphContainsSource(MyGraph graph, Node source){
