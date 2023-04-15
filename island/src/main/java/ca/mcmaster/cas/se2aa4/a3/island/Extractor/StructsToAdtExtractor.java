@@ -31,7 +31,7 @@ public class StructsToAdtExtractor {
             mySegments.add(myS);
         }
         for (Structs.Polygon p : polygons){
-            MyPolygon myP = new MyPolygon(p);
+            MyPolygon myP = new MyPolygon(p, findPolyCentroid(p));
             myPolygons.add(myP);
         }
 
@@ -64,5 +64,10 @@ public class StructsToAdtExtractor {
     public List<MyPolygon> getMyPolygons() {return myPolygons;}
     public List<MySegment> getMySegments() {return mySegments;}
     public List<MyVertex> getMyVertices() {return myVertices;}
+
+    private MyVertex findPolyCentroid(Structs.Polygon p){
+        int vertexIndex = p.getCentroidIdx();
+        return myVertices.get(vertexIndex);
+    }
 
 }

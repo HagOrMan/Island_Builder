@@ -1,5 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a3.island.Builders;
 
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityPainter;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.MyCityPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.Elevation.BaseElevation;
 import ca.mcmaster.cas.se2aa4.a3.island.FreshWater.AquiferGenerator;
 import ca.mcmaster.cas.se2aa4.a3.island.FreshWater.LakeGenerator;
@@ -10,6 +12,7 @@ import ca.mcmaster.cas.se2aa4.a3.island.IslandADTTypes.Tiles.*;
 import ca.mcmaster.cas.se2aa4.a3.island.IslandShapes.*;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
+import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 import ca.mcmaster.cas.se2aa4.a3.island.Whittaker.WhittakerDiagram;
 import org.locationtech.jts.geom.Geometry;
 
@@ -88,6 +91,21 @@ public class IslandBuilder extends AbstractBuilder {
         for (MyPolygon p : findPolygonsWithinIsland()){
             Tile newTile = biome.getTile((int) p.getMoisture(), p.getElevation());
             p.attemptChange(newTile);
+        }
+    }
+
+    public void generateCities(int numCities){
+        MyCityPainter cityPainter = new CityPainter();
+        normalizeVertices();
+        cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices);
+    }
+
+    private void normalizeVertices(){
+        for (MyPolygon p : myPolygons){
+            p.changeCentroidColour("0,0,0,0");
+        }
+        for (MyVertex v : myVertices){
+            v.setThick(1);
         }
     }
 

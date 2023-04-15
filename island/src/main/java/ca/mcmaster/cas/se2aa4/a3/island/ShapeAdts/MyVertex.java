@@ -3,6 +3,7 @@ package ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
 import ca.mcmaster.cas.se2aa4.a3.island.IslandADTTypes.Vertex.*;
+import ca.mcmaster.cas.se2aa4.a3.island.PropertyManager;
 
 import java.awt.*;
 
@@ -56,6 +57,29 @@ public class MyVertex implements MyShape {
 
     public void addToDischarge(int n) {
         islandVertex.addToDischarge(n);
+    }
+
+    /**
+     * Sets the thickness of this vertex.
+     * @param thickness int value of thickness wanted
+     */
+    public void setThick(float thickness){
+        Structs.Property thick = Structs.Property.newBuilder().setKey("thickness").setValue("" + thickness).build();
+
+        String val = PropertyManager.getProperty(this.getPropertiesList(), "thickness");
+
+        // If thickness property does not already exist.
+        if (val == null) {
+            vertex = Vertex.newBuilder(vertex).addProperties(thick).build();
+        }
+        // If thickness value needs to be changed.
+        else{
+            vertex = Vertex.newBuilder(vertex).setProperties(1, thick).build();
+        }
+    }
+
+    public java.util.List<Structs.Property> getPropertiesList() {
+        return vertex.getPropertiesList();
     }
 
 }

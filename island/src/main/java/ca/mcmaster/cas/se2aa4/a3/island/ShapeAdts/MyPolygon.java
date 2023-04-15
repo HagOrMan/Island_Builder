@@ -22,8 +22,9 @@ public class MyPolygon implements MyShape {
     private List <MySegment> segments = new ArrayList<>();
     private List<Coordinate> coordinates = new ArrayList<>();
     private List <MyPolygon> neighbours = new ArrayList<>();
+    private final MyVertex centroid;
 
-    public MyPolygon(Polygon p){
+    public MyPolygon(Polygon p, MyVertex v){
         polygon = p;
         index = totalIndex;
         totalIndex++;
@@ -31,8 +32,14 @@ public class MyPolygon implements MyShape {
         myTile = new OceanTile();
         Color tileColor = myTile.getColor();
         changeColor(tileColor.getRed() + "," + tileColor.getGreen() + "," + tileColor.getBlue());
+        centroid = v;
 
     }
+
+    public void changeCentroidColour(String colorCode){
+        centroid.changeColor(colorCode);
+    }
+    public int getCentroidIdx(){ return centroid.getIndex(); }
 
     // Orders the segments and sets the vertices list.
     private void orderSegments (){
