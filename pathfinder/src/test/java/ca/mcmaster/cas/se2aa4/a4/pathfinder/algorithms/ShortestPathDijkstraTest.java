@@ -8,6 +8,7 @@ import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.Map;
 
@@ -19,12 +20,14 @@ class ShortestPathDijkstraTest {
     private EdgeFactory edgeFactory;
     private Node n0, n1, n2, n3, n4;
     private Edge e01, e10;
+    private PathFinding shortestPath;
 
     @BeforeEach
     public void setUp(){
         g = new Graph();
         NodeFactory nodeFactory = NodeFactory.getInstance();
         edgeFactory = EdgeFactory.getInstance();
+        shortestPath = new ShortestPathDijkstra();
 
         n0 = nodeFactory.makeNode(0);
         n1 = nodeFactory.makeNode(1);
@@ -56,7 +59,7 @@ class ShortestPathDijkstraTest {
         g.addEdge(e23); g.addEdge(e32);
         g.addEdge(e31); g.addEdge(e13);
 
-        Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
+        Map<Node, Node> paths = shortestPath.findPath(g, n0);
         assertEquals(n0, paths.get(n0));
         assertEquals(n3, paths.get(n1));
         assertEquals(n0, paths.get(n2));
@@ -71,7 +74,7 @@ class ShortestPathDijkstraTest {
 
         g.addNode(n0);
 
-        Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
+        Map<Node, Node> paths = shortestPath.findPath(g, n0);
         assertEquals(n0, paths.get(n0));
 
     }
@@ -83,10 +86,20 @@ class ShortestPathDijkstraTest {
         g.addNode(n0); g.addNode(n1);
         g.addEdge(e10); g.addEdge(e01);
 
-        Map<Node, Node> paths = new ShortestPathDijkstra().findPath(g, n0);
+        Map<Node, Node> paths = shortestPath.findPath(g, n0);
         assertEquals(n0, paths.get(n0));
         assertEquals(n0, paths.get(n1));
 
+    }
+
+    @Test
+    void findPath0Nodes()  {
+        g = new Graph();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {shortestPath.findPath(g, n0);});
+        String expectedMessage = "Graph must contain input source node";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 
 }

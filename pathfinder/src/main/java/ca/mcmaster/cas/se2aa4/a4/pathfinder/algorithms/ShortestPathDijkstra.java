@@ -9,6 +9,8 @@ public class ShortestPathDijkstra implements PathFinding{
     @Override
     public Map<Node, Node> findPath(MyGraph graph, Node source) {
 
+        testGraphContainsSource(graph, source);
+
         // Creates map for path and sets each value to null except the source node path is itself.
         Map<Node, Node> path = new HashMap<>();
         fillPathKeys(path, graph.getNodes());
@@ -45,6 +47,13 @@ public class ShortestPathDijkstra implements PathFinding{
         }
 
         return path;
+    }
+
+    private void testGraphContainsSource(MyGraph graph, Node source){
+        Set<Node> nodes = graph.getNodes();
+        if (!nodes.contains(source)){
+            throw new IllegalArgumentException("Graph must contain input source node");
+        }
     }
 
     // Updates the queue for a new node, first checking if it already exists and removing it if so.
