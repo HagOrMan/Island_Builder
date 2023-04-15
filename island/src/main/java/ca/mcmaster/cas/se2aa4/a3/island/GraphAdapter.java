@@ -2,6 +2,7 @@ package ca.mcmaster.cas.se2aa4.a3.island;
 
 
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
+import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MySegment;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.EdgeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
@@ -15,6 +16,7 @@ import org.locationtech.jts.geom.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GraphAdapter {
 
@@ -100,6 +102,51 @@ public class GraphAdapter {
             }
         }
         return null;
+    }
+
+    public List<MySegment> getRoadsNeeded(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
+        List<MySegment> roads = new ArrayList<>();
+
+        // Gets map of node connections from shortest path algorithm.
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()));
+
+        // For each city vertex, backtracks from shortest path to create segments.
+        for (MyVertex v : findCityVertices(vertices)){
+            backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
+        }
+
+        return roads;
+    }
+
+    private void backtrackFromCity(List<MySegment> roads, Map<Node, Node> nodeMap, Node start, List<MyVertex> vertices){
+        Node current = start;
+        Node previous = nodeMap.get(start);
+        MyVertex v1, v2;
+
+        // Goes through map for given start node until we reach the capital.
+        while (previous != current){
+            v1 = vertices.get(current.getIndex());
+            v2 = vertices.get(previous.getIndex());
+
+            // Ensures segment does not already exist before creating it.
+            if (segmentDoesNotExist(roads, v1, v2)){
+                roads.add(new MySegment(v1, v2));
+            }
+
+            // Moves down the chain of nodes.
+            current = previous;
+            previous = nodeMap.get(current);
+
+        }
+    }
+
+    private boolean segmentDoesNotExist(List<MySegment> segments, MyVertex v1, MyVertex v2){
+        for (MySegment s : segments){
+            if (s.equals(v1.getIndex(), v2.getIndex())){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

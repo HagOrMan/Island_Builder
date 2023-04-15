@@ -8,11 +8,13 @@ import ca.mcmaster.cas.se2aa4.a3.island.Elevation.BaseElevation;
 import ca.mcmaster.cas.se2aa4.a3.island.FreshWater.AquiferGenerator;
 import ca.mcmaster.cas.se2aa4.a3.island.FreshWater.LakeGenerator;
 import ca.mcmaster.cas.se2aa4.a3.island.FreshWater.RiverGenerator;
+import ca.mcmaster.cas.se2aa4.a3.island.GraphAdapter;
 import ca.mcmaster.cas.se2aa4.a3.island.Humidity.MoistureAdder;
 import ca.mcmaster.cas.se2aa4.a3.island.Humidity.SoilProfile;
 import ca.mcmaster.cas.se2aa4.a3.island.IslandADTTypes.Tiles.*;
 import ca.mcmaster.cas.se2aa4.a3.island.IslandShapes.*;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
+import ca.mcmaster.cas.se2aa4.a3.island.Roads.MyRoadPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 import ca.mcmaster.cas.se2aa4.a3.island.Whittaker.WhittakerDiagram;
@@ -26,6 +28,8 @@ import java.util.Random;
 public class IslandBuilder extends AbstractBuilder {
 
     private final IslandShape islandShape;
+    private final GraphAdapter graphAdapter = new GraphAdapter();
+    private MyVertex capital = null;
 
     public void constructElevation (BaseElevation elevation){
         elevation.generateElevation(islandShape, findPolygonsWithinIsland(), myVertices);
@@ -105,7 +109,7 @@ public class IslandBuilder extends AbstractBuilder {
 
         // Makes a capital city and saves the vertex where this is found.
         MyCapitalCityMaker capitalCityMaker = new CapitalCityCreator();
-        MyVertex capital = capitalCityMaker.makeCapitalCity(findIslandVertices(), findPolygonsWithinIsland(), islandShape);
+        capital = capitalCityMaker.makeCapitalCity(findIslandVertices(), findPolygonsWithinIsland(), islandShape, graphAdapter);
     }
 
     private void normalizeVertices(){
@@ -128,6 +132,10 @@ public class IslandBuilder extends AbstractBuilder {
         }
 
         return islandVertices;
+    }
+
+    public void buildRoads(MyRoadPainter roadPainter){
+        roadPainter.buildRoads(mySegments, myVertices, graphAdapter, capital);
     }
 
 }
