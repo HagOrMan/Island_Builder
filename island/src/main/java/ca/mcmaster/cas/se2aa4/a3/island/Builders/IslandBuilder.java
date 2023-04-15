@@ -1,6 +1,8 @@
 package ca.mcmaster.cas.se2aa4.a3.island.Builders;
 
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.CapitalCityCreator;
 import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityPainter;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.MyCapitalCityMaker;
 import ca.mcmaster.cas.se2aa4.a3.island.Cities.MyCityPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.Elevation.BaseElevation;
 import ca.mcmaster.cas.se2aa4.a3.island.FreshWater.AquiferGenerator;
@@ -94,10 +96,16 @@ public class IslandBuilder extends AbstractBuilder {
         }
     }
 
-    public void generateCities(int numCities){
+    public void generateCities(int numCities, Random rand){
+
+        // Randomly adds cities to map based on input.
         MyCityPainter cityPainter = new CityPainter();
         normalizeVertices();
-        cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices);
+        cityPainter.addCitiesToIsland(findPolygonsWithinIsland(), numCities, myVertices, rand);
+
+        // Makes a capital city and saves the vertex where this is found.
+        MyCapitalCityMaker capitalCityMaker = new CapitalCityCreator();
+        MyVertex capital = capitalCityMaker.makeCapitalCity(findIslandVertices(), findPolygonsWithinIsland(), islandShape);
     }
 
     private void normalizeVertices(){
@@ -107,6 +115,19 @@ public class IslandBuilder extends AbstractBuilder {
         for (MyVertex v : myVertices){
             v.setThick(1);
         }
+    }
+
+    // Gets list of all vertices in island that aren't on lake tiles.
+    private List<MyVertex> findIslandVertices(){
+        List<MyVertex> islandVertices = new ArrayList<>();
+
+        for (MyPolygon p : findPolygonsWithinIsland()){
+            if (!p.isWaterTile()){
+                islandVertices.add(myVertices.get(p.getCentroidIdx()));
+            }
+        }
+
+        return islandVertices;
     }
 
 }

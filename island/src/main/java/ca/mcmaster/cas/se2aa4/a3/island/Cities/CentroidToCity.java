@@ -20,10 +20,10 @@ public class CentroidToCity {
 
     private Map<CityOption, Integer> makeCitySizes(){
         Map<CityOption, Integer> options = new HashMap<>();
-        options.put(CityOption.CAPITAL, 10);
-        options.put(CityOption.CITY, 7);
-        options.put(CityOption.VILLAGE, 5);
-        options.put(CityOption.HAMLET, 3);
+        options.put(CityOption.CAPITAL, 15);
+        options.put(CityOption.CITY, 10);
+        options.put(CityOption.VILLAGE, 7);
+        options.put(CityOption.HAMLET, 4);
         return options;
     }
 
@@ -41,6 +41,7 @@ public class CentroidToCity {
         vertex.setThick(citySizes.get(option));
         Color colour = cityColours.get(option);
         vertex.changeColor(colour.getRed() + "," + colour.getGreen() + "," + colour.getBlue());
+        vertex.makeVertexCity(option);
     }
 
 }

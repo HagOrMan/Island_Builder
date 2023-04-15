@@ -4,5 +4,6 @@ public enum CityOption {
     CAPITAL,
     CITY,
     HAMLET,
-    VILLAGE
+    VILLAGE,
+    NONE
 }

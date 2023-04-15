@@ -4,7 +4,8 @@ import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 
 import java.util.List;
+import java.util.Random;
 
 public interface MyCityPainter {
-    void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices);
+    void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices, Random rand);
 }

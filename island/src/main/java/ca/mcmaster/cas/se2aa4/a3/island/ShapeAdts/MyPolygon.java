@@ -228,6 +228,8 @@ public class MyPolygon implements MyShape {
      */
     public boolean isNeighbour(MyPolygon other){ return neighbours.contains(other); }
 
+    public List<MyPolygon> getNeighbours(){ return neighbours; }
+
     public boolean setAquifer (){
         return myTile.setAquifer();
     }

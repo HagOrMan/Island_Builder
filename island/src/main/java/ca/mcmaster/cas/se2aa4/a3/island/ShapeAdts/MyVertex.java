@@ -2,6 +2,10 @@ package ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts;
 
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityOption;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.VertexCityTypes.VertexGroup;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.VertexCityTypes.VertexHasCity;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.VertexCityTypes.VertexNoCity;
 import ca.mcmaster.cas.se2aa4.a3.island.IslandADTTypes.Vertex.*;
 import ca.mcmaster.cas.se2aa4.a3.island.PropertyManager;
 
@@ -13,12 +17,14 @@ public class MyVertex implements MyShape {
     private final int index;
     private Vertex vertex;
     private IslandVertex islandVertex;
+    private VertexGroup cityType;
 
     public MyVertex(Vertex v){
         vertex = v;
         index = totalIndex;
         totalIndex++;
         islandVertex = new LandVertex();
+        cityType = new VertexNoCity();
     }
 
     public void changeColor(String colorCode){
@@ -78,8 +84,18 @@ public class MyVertex implements MyShape {
         }
     }
 
+    public void makeVertexCity(CityOption cityOption){
+        cityType = new VertexHasCity(cityOption);
+    }
+
     public java.util.List<Structs.Property> getPropertiesList() {
         return vertex.getPropertiesList();
     }
+
+    /**
+     * Tells if this vertex is a city or not.
+     * @return true if this vertex is a city.
+     */
+    public boolean isCity(){ return cityType.getCityType() != CityOption.NONE; }
 
 }

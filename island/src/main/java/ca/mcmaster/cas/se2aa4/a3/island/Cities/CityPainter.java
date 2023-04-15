@@ -2,7 +2,6 @@ package ca.mcmaster.cas.se2aa4.a3.island.Cities;
 
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
-import org.locationtech.jts.geom.Point;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,12 +14,11 @@ public class CityPainter implements MyCityPainter{
     private final CitySizeDecider cityDecider = new CitySizeDecider();
 
     // Take in polygons within island and number of cities to make, and randomly makes vertices in island as cities.
-    public void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices){
+    public void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices, Random rand){
         Set<Integer> polygonsWithIndices = new HashSet<>();
-        Random rand = new Random();
         int islandPolygons = countIslandPolygons(polygons);
 
-        int index = -1;
+        int index;
         int centroidIdx;
         MyPolygon p;
 
@@ -38,6 +36,7 @@ public class CityPainter implements MyCityPainter{
             centroidIdx = p.getCentroidIdx();
             addVertexAsCity(vertices.get(centroidIdx), rand.nextInt(100));
         }
+
     }
 
     // Based on the population, gets the city type, and converts the vertex to a city based on that.

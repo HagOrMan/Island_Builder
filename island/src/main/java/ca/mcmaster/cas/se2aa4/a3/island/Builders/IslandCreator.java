@@ -27,10 +27,10 @@ public class IslandCreator {
     }
 
     // Creates a regular island.
-    public Mesh createIsland(IslandBuilder islandBuilder, Mesh aMesh, BaseElevation elevation, Random rand, int numAquifers, SoilProfile soilProfile, int numLakes, int numRivers, WhittakerDiagram whittakerDiagram){
+    public Mesh createIsland(IslandBuilder islandBuilder, Mesh aMesh, BaseElevation elevation, Random rand, int numAquifers, SoilProfile soilProfile, int numLakes, int numRivers, WhittakerDiagram whittakerDiagram, int numCities){
         constructBaseIsland(islandBuilder, aMesh, elevation, rand, numAquifers, soilProfile, numLakes, numRivers);
         islandBuilder.generateBiome(whittakerDiagram);
-        islandBuilder.generateCities(410);
+        islandBuilder.generateCities(numCities, rand);
         return islandBuilder.getIsland();
     }
 
