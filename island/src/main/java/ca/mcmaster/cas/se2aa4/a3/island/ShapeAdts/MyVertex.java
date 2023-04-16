@@ -97,5 +97,6 @@ public class MyVertex implements MyShape {
      * @return true if this vertex is a city.
      */
     public boolean isCity(){ return cityType.getCityType() != CityOption.NONE; }
+    public CityOption getCityType(){ return cityType.getCityType(); }
 
 }

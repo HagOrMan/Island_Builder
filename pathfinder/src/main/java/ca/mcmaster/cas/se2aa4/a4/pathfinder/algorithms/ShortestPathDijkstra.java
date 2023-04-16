@@ -89,6 +89,10 @@ public class ShortestPathDijkstra implements PathFinding{
         fillCostDistKeys(graph.getNodes());
         costDist.replace(source, new Integer[]{0, 0});
 
+        cost = new HashMap<>();
+        fillCostKeys(cost, graph.getNodes());
+        cost.replace(source, 0);
+
         // Initializes priority queue and adds source to queue.
         Queue<Map.Entry<Node, Integer>> queue = new PriorityQueue<>(Map.Entry.comparingByValue());
         queue.add(new AbstractMap.SimpleEntry<>(source, 0));
@@ -107,6 +111,7 @@ public class ShortestPathDijkstra implements PathFinding{
                 if (nCost + weight < otherCost && newDist < maxEdges){
                     path.replace(other, n);
                     costDist.replace(other, new Integer[]{nCost + weight, newDist});
+                    cost.replace(other, nCost + weight);
                     // Updates other in priority queue such that other has priority cost of its new cost.
                     updateQueue(queue, other, cost);
                 }

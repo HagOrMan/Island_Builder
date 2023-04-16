@@ -1,5 +1,6 @@
 package ca.mcmaster.cas.se2aa4.a3.island.Roads;
 
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityOption;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphAdapter;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MySegment;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
@@ -15,6 +16,26 @@ public class RoadPainter implements MyRoadPainter{
             s.setThick(3);
             s.changeColor("50,50,50");
             segments.add(s);
+        }
+        for (MyVertex v : vertices){
+            if (v.getCityType() != CityOption.CITY){
+                continue;
+            }
+            for (MySegment s: graphAdapter.getRoadsNeededSecondary(vertices, v, new ShortestPathDijkstra())){
+                s.setThick(2);
+                s.changeColor("100,100,50");
+                segments.add(s);
+            }
+        }
+        for (MyVertex v : vertices){
+            if (v.getCityType() != CityOption.HAMLET){
+                continue;
+            }
+            for (MySegment s: graphAdapter.getRoadsNeededSecondary(vertices, v, new ShortestPathDijkstra())){
+                s.setThick(1);
+                s.changeColor("150,150,150");
+                segments.add(s);
+            }
         }
     }
 }

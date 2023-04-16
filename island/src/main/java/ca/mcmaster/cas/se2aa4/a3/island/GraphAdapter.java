@@ -1,6 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a3.island;
 
 
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityOption;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MySegment;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
@@ -157,6 +158,50 @@ public class GraphAdapter {
             }
         }
         return true;
+    }
+
+
+    // Returns list of new segments that represent roads between cities and hamlets/villages/cities.
+    public List<MySegment> getRoadsNeededSecondary(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
+        List<MySegment> roads = new ArrayList<>();
+
+        // Gets map of node connections from shortest path algorithm.
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 30);
+
+        // For each city vertex, backtracks from shortest path to create segments.
+        for (MyVertex v : findCityVertices(vertices, CityOption.CITY)){
+            if (nodeMap.get(nodeFromIndex(v.getIndex())) != null) {
+                backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
+            }
+        }
+
+        return roads;
+    }
+
+    public List<MySegment> getRoadsNeededTertiary(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
+        List<MySegment> roads = new ArrayList<>();
+
+        // Gets map of node connections from shortest path algorithm.
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 30);
+
+        // For each city vertex, backtracks from shortest path to create segments.
+        for (MyVertex v : findCityVertices(vertices, CityOption.HAMLET)){
+            if (nodeMap.get(nodeFromIndex(v.getIndex())) != null) {
+                backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
+            }
+        }
+
+        return roads;
+    }
+
+    private List<MyVertex> findCityVertices(List<MyVertex> vertices, CityOption cityOption){
+        List<MyVertex> cityVertices = new ArrayList<>();
+        for (MyVertex v : vertices){
+            if (v.getCityType() == cityOption){
+                cityVertices.add(v);
+            }
+        }
+        return cityVertices;
     }
 
 }
