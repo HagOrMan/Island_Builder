@@ -43,12 +43,6 @@ public class RoadPainter implements MyRoadPainter{
                 segments.add(s);
                 createdRoads.add(s);
             }
-//            for (MySegment s: graphAdapter.getRoadsNeededSecondary(vertices, v, new ShortestPathDijkstra(), createdRoads)){
-//                s.setThick(2);
-//                s.changeColor("100,100,50");
-//                segments.add(s);
-//                createdRoads.add(s);
-//            }
         }
         // Adds connections between villages and villages/hamlets.
         for (MyVertex v : vertices){
