@@ -80,8 +80,8 @@ public class RoadPainter implements MyRoadPainter{
             // Makes hamlet to hamlet connections with a max distance of 5.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     6, CityOption.HAMLET)){
-                s.setThick(1);
-                s.changeColor("175,175,150");
+                s.setThick(0.8f);
+                s.changeColor("200,200,150");
                 segments.add(s);
                 createdRoads.add(s);
             }
