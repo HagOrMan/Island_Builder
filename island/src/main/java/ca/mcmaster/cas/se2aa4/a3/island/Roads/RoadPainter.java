@@ -71,7 +71,7 @@ public class RoadPainter implements MyRoadPainter{
             if (v.getCityType() != CityOption.HAMLET){
                 continue;
             }
-            // Makes hamlet to hamlet connections with a max distance of 5.
+            // Makes hamlet to hamlet connections with a max distance of 6.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     6, CityOption.HAMLET)){
                 s.setThick(0.8f);
