@@ -8,6 +8,7 @@ import java.util.*;
 public class ShortestPathDijkstra implements PathFinding{
 
     private Map<Node, Integer> cost = new HashMap<>();
+    private Map<Node, Integer[]> costDist = new HashMap<>();
 
     // Gets longest path out of the shortest paths found for this source node.
     public int longestPathDistance(){
@@ -74,6 +75,49 @@ public class ShortestPathDijkstra implements PathFinding{
         return path;
     }
 
+    @Override
+    public Map<Node, Node> findPath(MyGraph graph, Node source, int maxEdges) {
+        testGraphContainsSource(graph, source);
+
+        // Creates map for path and sets each value to null except the source node path is itself.
+        Map<Node, Node> path = new HashMap<>();
+        fillPathKeys(path, graph.getNodes());
+        path.replace(source, source);
+
+        // Creates cost map and fills with infinity, except source cost is 0.
+        costDist = new HashMap<>();
+        fillCostDistKeys(graph.getNodes());
+        costDist.replace(source, new Integer[]{0, 0});
+
+        // Initializes priority queue and adds source to queue.
+        Queue<Map.Entry<Node, Integer>> queue = new PriorityQueue<>(Map.Entry.comparingByValue());
+        queue.add(new AbstractMap.SimpleEntry<>(source, 0));
+
+        // Goes through priority as per dijkstra's algorithm.
+        while (!queue.isEmpty()){
+            Node n = queue.remove().getKey();
+
+            for (Node other : graph.getAdjacentNodes(n)){
+                int nCost = costDist.get(n)[0];
+                int otherCost = costDist.get(other)[0];
+                int weight = graph.getWeight(n, other);
+                int newDist = costDist.get(n)[1] + 1;
+
+                // Checks if current node to node being checked gives it a lower cost.
+                if (nCost + weight < otherCost && newDist < maxEdges){
+                    path.replace(other, n);
+                    costDist.replace(other, new Integer[]{nCost + weight, newDist});
+                    // Updates other in priority queue such that other has priority cost of its new cost.
+                    updateQueue(queue, other, cost);
+                }
+
+            }
+
+        }
+
+        return path;
+    }
+
     private void testGraphContainsSource(MyGraph graph, Node source){
         Set<Node> nodes = graph.getNodes();
         if (!nodes.contains(source)){
@@ -99,4 +143,11 @@ public class ShortestPathDijkstra implements PathFinding{
             path.put(n, Integer.MAX_VALUE);
         }
     }
+
+    private void fillCostDistKeys(Set<Node> nodes){
+        for (Node n : nodes){
+            costDist.put(n, new Integer[]{Integer.MAX_VALUE, 0});
+        }
+    }
+
 }

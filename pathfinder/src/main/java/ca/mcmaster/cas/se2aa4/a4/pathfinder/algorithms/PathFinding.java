@@ -8,7 +8,8 @@ import java.util.Set;
 
 public interface PathFinding {
 
-    Map<Node, Node> findPath(MyGraph graph, Node start);
+    Map<Node, Node> findPath(MyGraph graph, Node source);
+    Map<Node, Node> findPath(MyGraph graph, Node source, int maxEdges);
     int longestPathDistance();
     int longestPathGivenNodes(Set<Node> nodes);
 }
