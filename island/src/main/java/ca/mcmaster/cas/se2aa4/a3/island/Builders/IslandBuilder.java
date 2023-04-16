@@ -18,6 +18,7 @@ import ca.mcmaster.cas.se2aa4.a3.island.Roads.MyRoadPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 import ca.mcmaster.cas.se2aa4.a3.island.Whittaker.WhittakerDiagram;
+import ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms.ShortestPathDijkstra;
 import org.locationtech.jts.geom.Geometry;
 
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class IslandBuilder extends AbstractBuilder {
 
         // Makes a capital city and saves the vertex where this is found.
         MyCapitalCityMaker capitalCityMaker = new CapitalCityCreator();
-        capital = capitalCityMaker.makeCapitalCity(findIslandVertices(), findPolygonsWithinIsland(), islandShape, graphAdapter);
+        capital = capitalCityMaker.makeCapitalCity(findIslandVertices(), findPolygonsWithinIsland(), new ShortestPathDijkstra(), graphAdapter);
     }
 
     private void normalizeVertices(){

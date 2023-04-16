@@ -7,9 +7,27 @@ import java.util.*;
 
 public class ShortestPathDijkstra implements PathFinding{
 
-    private int longestPath = 0;
+    private Map<Node, Integer> cost = new HashMap<>();
 
+    // Gets longest path out of the shortest paths found for this source node.
     public int longestPathDistance(){
+        int c;
+        int longestPath = 0;
+        for (Node key : cost.keySet()){
+            c = cost.get(key);
+            longestPath = Math.max(longestPath, c);
+        }
+        return longestPath;
+    }
+
+    // Gets longest path to the set of given nodes.
+    public int longestPathGivenNodes(Set<Node> nodes){
+        int c;
+        int longestPath = 0;
+        for (Node key : nodes){
+            c = cost.get(key);
+            longestPath = Math.max(longestPath, c);
+        }
         return longestPath;
     }
 
@@ -24,7 +42,7 @@ public class ShortestPathDijkstra implements PathFinding{
         path.replace(source, source);
 
         // Creates cost map and fills with infinity, except source cost is 0.
-        Map<Node, Integer> cost = new HashMap<>();
+        cost = new HashMap<>();
         fillCostKeys(cost, graph.getNodes());
         cost.replace(source, 0);
 
@@ -53,18 +71,7 @@ public class ShortestPathDijkstra implements PathFinding{
 
         }
 
-        updateLongestPath(cost);
-
         return path;
-    }
-
-    // Updates longest path out of the shortest paths found for this source node.
-    private void updateLongestPath(Map<Node, Integer> cost){
-        int c;
-        for (Node key : cost.keySet()){
-            c = cost.get(key);
-            longestPath = Math.max(longestPath, c);
-        }
     }
 
     private void testGraphContainsSource(MyGraph graph, Node source){

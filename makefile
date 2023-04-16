@@ -115,6 +115,6 @@ hexmovol: s genhexmovol visisland
 cirvol: s gencirvol visisland
 
 gencity:
-	cd island && java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 5 -river 6 -aquifer 4 -seed 6812161995636894525 -biome warmtemperate -city 10
+	cd island && java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 60 -river 6 -aquifer 4 -biome warmtemperate -city 20 -seed 2818189228017187034
 
 city: s gencity visisland

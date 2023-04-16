@@ -5,6 +5,9 @@
 Check A3 Information --> Legend for information about command line arguments and specifying the number of cities.
 Note: Capital city is decided based on proximity to center of island.
 
+Sample command to view island with cities:
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 5 -river 6 -aquifer 4 -seed 6812161995636894525 -biome warmtemperate -city 10
+
 # A3 Information
 
 ## How to contribute to the project

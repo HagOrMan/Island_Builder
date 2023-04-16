@@ -53,7 +53,7 @@ public class GraphAdapter {
 
                 // Ensures we do not add edges to outside of graph.
                 if (p.isWaterTile() || !p.isIsland() || other.isWaterTile() || !other.isIsland()){
-                    break;
+                    continue;
                 }
 
                 int v1Idx = p.getCentroidIdx(), v2Idx = other.getCentroidIdx();
@@ -64,16 +64,17 @@ public class GraphAdapter {
         }
     }
 
-    public MyVertex findCapital(List<MyVertex> vertices, Point p){
+    // Finds the capital city based on which vertex is most central.
+    public MyVertex findCapital(List<MyVertex> vertices, PathFinding pathfinder){
         List<MyVertex> cityVertices = findCityVertices(vertices);
         int lowestDistance = Integer.MAX_VALUE;
         MyVertex capital = null;
         int distance;
-        Point vertex;
 
+        // Goes through each city vertex and finds the one which is most central (has shortest longest path).
         for (MyVertex v: cityVertices){
-            vertex = new GeometryFactory().createPoint(new Coordinate(v.getX(), v.getY()));
-            distance = (int) vertex.distance(p);
+            pathfinder.findPath(graph, nodeFromIndex(v.getIndex()));
+            distance = pathfinder.longestPathDistance();
 
             if (distance < lowestDistance){
                 lowestDistance = distance;
@@ -104,6 +105,7 @@ public class GraphAdapter {
         return null;
     }
 
+    // Returns list of new segments that represent roads between capital and cities.
     public List<MySegment> getRoadsNeeded(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
         List<MySegment> roads = new ArrayList<>();
 
@@ -118,13 +120,14 @@ public class GraphAdapter {
         return roads;
     }
 
+    // Goes backwards from a given start node until it reaches to source node.
     private void backtrackFromCity(List<MySegment> roads, Map<Node, Node> nodeMap, Node start, List<MyVertex> vertices){
         Node current = start;
         Node previous = nodeMap.get(start);
         MyVertex v1, v2;
 
         // Goes through map for given start node until we reach the capital.
-        while (previous != current){
+        while (previous != current && previous != null){
             v1 = vertices.get(current.getIndex());
             v2 = vertices.get(previous.getIndex());
 
