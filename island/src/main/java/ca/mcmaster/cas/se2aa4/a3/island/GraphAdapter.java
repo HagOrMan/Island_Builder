@@ -113,23 +113,25 @@ public class GraphAdapter {
         return null;
     }
 
-    // Returns list of new segments that represent roads between capital and cities.
-    public List<MySegment> getRoadsNeeded(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
-        List<MySegment> roads = new ArrayList<>();
+    // Returns list of new segments that represent roads between capital and everything else.
+    public List<MySegment> getRoadsNeeded(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder,
+                                          List<MySegment> createdRoads){
+        List<MySegment> newRoads = new ArrayList<>();
 
         // Gets map of node connections from shortest path algorithm.
         Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()));
 
         // For each city vertex, backtracks from shortest path to create segments.
         for (MyVertex v : findCityVertices(vertices)){
-            backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
+            backtrackFromCity(newRoads, createdRoads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
         }
 
-        return roads;
+        return newRoads;
     }
 
     // Goes backwards from a given start node until it reaches to source node.
-    private void backtrackFromCity(List<MySegment> roads, Map<Node, Node> nodeMap, Node start, List<MyVertex> vertices){
+    private void backtrackFromCity(List<MySegment> newRoads, List<MySegment> createdRoads, Map<Node, Node> nodeMap,
+                                   Node start, List<MyVertex> vertices){
         Node current = start;
         Node previous = nodeMap.get(start);
         MyVertex v1, v2;
@@ -140,8 +142,8 @@ public class GraphAdapter {
             v2 = vertices.get(previous.getIndex());
 
             // Ensures segment does not already exist before creating it.
-            if (segmentDoesNotExist(roads, v1, v2)){
-                roads.add(new MySegment(v1, v2));
+            if (segmentDoesNotExist(newRoads, v1, v2) && segmentDoesNotExist(createdRoads, v1, v2)){
+                newRoads.add(new MySegment(v1, v2));
             }
 
             // Moves down the chain of nodes.
@@ -153,45 +155,29 @@ public class GraphAdapter {
 
     private boolean segmentDoesNotExist(List<MySegment> segments, MyVertex v1, MyVertex v2){
         for (MySegment s : segments){
-            if (s.equals(v1.getIndex(), v2.getIndex())){
+            if (s.equals(v1.getIndex(), v2.getIndex()) || s.equals(v2.getIndex(), v1.getIndex())){
                 return false;
             }
         }
         return true;
     }
 
-
-    // Returns list of new segments that represent roads between cities and hamlets/villages/cities.
-    public List<MySegment> getRoadsNeededSecondary(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
-        List<MySegment> roads = new ArrayList<>();
+    // Returns list of new segments that represent roads between an input source vertex and an input city type within a given distance.
+    public List<MySegment> getRoadsNeeded(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder,
+                                                   List<MySegment> createdRoads, int maxEdges, CityOption cityType){
+        List<MySegment> newRoads = new ArrayList<>();
 
         // Gets map of node connections from shortest path algorithm.
-        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 15);
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), maxEdges);
 
-        // For each city vertex, backtracks from shortest path to create segments.
-        for (MyVertex v : findCityVertices(vertices, CityOption.VILLAGE)){
+        // For each city vertex, backtracks from shortest path to create segments to other cities and villages.
+        for (MyVertex v : findCityVertices(vertices, cityType)){
             if (nodeMap.get(nodeFromIndex(v.getIndex())) != null) {
-                backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
+                backtrackFromCity(newRoads, createdRoads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
             }
         }
 
-        return roads;
-    }
-
-    public List<MySegment> getRoadsNeededTertiary(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
-        List<MySegment> roads = new ArrayList<>();
-
-        // Gets map of node connections from shortest path algorithm.
-        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 8);
-
-        // For each city vertex, backtracks from shortest path to create segments.
-        for (MyVertex v : findCityVertices(vertices, CityOption.HAMLET)){
-            if (nodeMap.get(nodeFromIndex(v.getIndex())) != null) {
-                backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
-            }
-        }
-
-        return roads;
+        return newRoads;
     }
 
     private List<MyVertex> findCityVertices(List<MyVertex> vertices, CityOption cityOption){
