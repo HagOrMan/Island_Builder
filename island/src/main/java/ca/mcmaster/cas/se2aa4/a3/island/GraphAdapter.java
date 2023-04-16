@@ -10,9 +10,6 @@ import ca.mcmaster.cas.se2aa4.a4.pathfinder.MyGraph;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms.PathFinding;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Point;
 
 import java.util.*;
 
