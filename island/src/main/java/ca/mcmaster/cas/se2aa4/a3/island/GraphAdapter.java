@@ -14,9 +14,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GraphAdapter {
 
@@ -66,7 +64,11 @@ public class GraphAdapter {
 
     // Finds the capital city based on which vertex is most central.
     public MyVertex findCapital(List<MyVertex> vertices, PathFinding pathfinder){
+
+        // Gets list of all city vertices, and then converts to node set.
         List<MyVertex> cityVertices = findCityVertices(vertices);
+        Set<Node> cityNodes = new HashSet<>(cityVerticesToNodes(cityVertices));
+
         int lowestDistance = Integer.MAX_VALUE;
         MyVertex capital = null;
         int distance;
@@ -74,7 +76,7 @@ public class GraphAdapter {
         // Goes through each city vertex and finds the one which is most central (has shortest longest path).
         for (MyVertex v: cityVertices){
             pathfinder.findPath(graph, nodeFromIndex(v.getIndex()));
-            distance = pathfinder.longestPathDistance();
+            distance = pathfinder.longestPathGivenNodes(cityNodes);
 
             if (distance < lowestDistance){
                 lowestDistance = distance;
@@ -93,6 +95,14 @@ public class GraphAdapter {
             }
         }
         return cityVertices;
+    }
+
+    private Set<Node> cityVerticesToNodes(List<MyVertex> vertices){
+        Set<Node> nodes = new HashSet<>();
+        for (MyVertex v: vertices){
+            nodes.add(nodeFromIndex(v.getIndex()));
+        }
+        return nodes;
     }
 
     // Gets a node from a specified index.
