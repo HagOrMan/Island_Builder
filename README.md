@@ -2,6 +2,19 @@
 
   - Kyle Hagerman [hagermak@mcmaster.ca]
 
+## Information on running the program
+Check A3 Information --> Legend for information about command line arguments and specifying the number of cities.
+Note: Capital city is decided based on the most central city once they have been randomly generated on the map.
+This is done by calculating the shortest path from every node as a source node to every other node, taking the longest path from every source node, and comparing each longest path to other source nodes to find the shortest of all the longest paths.
+
+Sample command to view island with cities:
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 5 -river 6 -aquifer 4 -seed 6812161995636894525 -biome warmtemperate -city 10
+
+## About this project
+As an extension to A3, island generation, A4 looks to create a star network of cities on the island. 
+It implements a shortest path algorithm, the current one using dijkstra's and an adjacency list, although interface segregation allows anyone to create their own graph representation and path finding algorithm to be used instead.
+First, the most central city is found from the randomly generated cities, and this is made the capital.
+Then, the shortest path to each other city is calculated, and roads are made to connect the capital to other cities.
 
 # A3 Information
 
@@ -57,6 +70,7 @@ When you develop features and enrich the product, remember that you have first t
 - -biome = Whittaker diagram to take biomes from when visualizing (defaults to only visualizing with general green land tiles)
 - -lake = maximum number of lakes to generate (default = 0)
 - -river = maximum number of rivers to generate (default = 0)
+- -city = number of cities to generate (default = 0)
 
 ### List of valid shapes
 1. 'circle' (default)

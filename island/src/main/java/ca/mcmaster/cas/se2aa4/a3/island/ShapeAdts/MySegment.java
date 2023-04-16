@@ -18,6 +18,22 @@ public class MySegment implements MyShape {
         index = totalIndex;
         totalIndex++;
     }
+    public MySegment(MyVertex v1, MyVertex v2){
+        this.index = totalIndex;
+        totalIndex++;
+        this.v1 = v1;
+        this.v2 = v2;
+        initSegment();
+    }
+
+    private void initSegment(){
+
+        Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue("0,0,0").build();
+
+        // Stores in segment.
+        segment = Segment.newBuilder().setV1Idx(v1.getIndex()).setV2Idx(v2.getIndex()).addProperties(color).build();
+
+    }
 
     public void changeColor(String colorCode){
         Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(colorCode).build();
@@ -89,6 +105,10 @@ public class MySegment implements MyShape {
     public double getV1Y(){ return v1.getY(); }
     public double getV2X(){ return v2.getX(); }
     public double getV2Y(){ return v2.getY(); }
+
+    public boolean equals(int v1Idx, int v2Idx){
+        return getV1Index() == v1Idx && getV2Index() == v2Idx;
+    }
 
 
     public MyVertex getV1(){return v1;}

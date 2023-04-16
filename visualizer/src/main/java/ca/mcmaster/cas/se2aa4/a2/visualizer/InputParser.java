@@ -71,8 +71,8 @@ public class InputParser {
         if (line.hasOption("o")){
             outputFile = line.getOptionValue("o");
         }
-        if (line.hasOption("debug")){
-            debug = line.getOptionValue("debug");
+        if (line.hasOption("X")){
+            debug = "X";
         }
 
         InputHandler handler = new InputHandler();

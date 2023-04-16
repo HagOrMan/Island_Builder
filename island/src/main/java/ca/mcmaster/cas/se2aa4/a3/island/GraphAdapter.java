@@ -2,6 +2,7 @@ package ca.mcmaster.cas.se2aa4.a3.island;
 
 
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
+import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MySegment;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.EdgeCreation.EdgeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.Graph;
@@ -9,12 +10,8 @@ import ca.mcmaster.cas.se2aa4.a4.pathfinder.MyGraph;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.Node;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.NodeCreation.NodeFactory;
 import ca.mcmaster.cas.se2aa4.a4.pathfinder.algorithms.PathFinding;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Point;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GraphAdapter {
 
@@ -51,7 +48,7 @@ public class GraphAdapter {
 
                 // Ensures we do not add edges to outside of graph.
                 if (p.isWaterTile() || !p.isIsland() || other.isWaterTile() || !other.isIsland()){
-                    break;
+                    continue;
                 }
 
                 int v1Idx = p.getCentroidIdx(), v2Idx = other.getCentroidIdx();
@@ -62,16 +59,21 @@ public class GraphAdapter {
         }
     }
 
-    public MyVertex findCapital(List<MyVertex> vertices, Point p){
+    // Finds the capital city based on which vertex is most central.
+    public MyVertex findCapital(List<MyVertex> vertices, PathFinding pathfinder){
+
+        // Gets list of all city vertices, and then converts to node set.
         List<MyVertex> cityVertices = findCityVertices(vertices);
+        Set<Node> cityNodes = new HashSet<>(cityVerticesToNodes(cityVertices));
+
         int lowestDistance = Integer.MAX_VALUE;
         MyVertex capital = null;
         int distance;
-        Point vertex;
 
+        // Goes through each city vertex and finds the one which is most central (has shortest longest path).
         for (MyVertex v: cityVertices){
-            vertex = new GeometryFactory().createPoint(new Coordinate(v.getX(), v.getY()));
-            distance = (int) vertex.distance(p);
+            pathfinder.findPath(graph, nodeFromIndex(v.getIndex()));
+            distance = pathfinder.longestPathGivenNodes(cityNodes);
 
             if (distance < lowestDistance){
                 lowestDistance = distance;
@@ -92,6 +94,14 @@ public class GraphAdapter {
         return cityVertices;
     }
 
+    private Set<Node> cityVerticesToNodes(List<MyVertex> vertices){
+        Set<Node> nodes = new HashSet<>();
+        for (MyVertex v: vertices){
+            nodes.add(nodeFromIndex(v.getIndex()));
+        }
+        return nodes;
+    }
+
     // Gets a node from a specified index.
     private Node nodeFromIndex(int index){
         for (Node n: graph.getNodes()){
@@ -100,6 +110,53 @@ public class GraphAdapter {
             }
         }
         return null;
+    }
+
+    // Returns list of new segments that represent roads between capital and cities.
+    public List<MySegment> getRoadsNeeded(List<MyVertex> vertices, MyVertex source, PathFinding pathfinder){
+        List<MySegment> roads = new ArrayList<>();
+
+        // Gets map of node connections from shortest path algorithm.
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()));
+
+        // For each city vertex, backtracks from shortest path to create segments.
+        for (MyVertex v : findCityVertices(vertices)){
+            backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
+        }
+
+        return roads;
+    }
+
+    // Goes backwards from a given start node until it reaches to source node.
+    private void backtrackFromCity(List<MySegment> roads, Map<Node, Node> nodeMap, Node start, List<MyVertex> vertices){
+        Node current = start;
+        Node previous = nodeMap.get(start);
+        MyVertex v1, v2;
+
+        // Goes through map for given start node until we reach the capital.
+        while (previous != current && previous != null){
+            v1 = vertices.get(current.getIndex());
+            v2 = vertices.get(previous.getIndex());
+
+            // Ensures segment does not already exist before creating it.
+            if (segmentDoesNotExist(roads, v1, v2)){
+                roads.add(new MySegment(v1, v2));
+            }
+
+            // Moves down the chain of nodes.
+            current = previous;
+            previous = nodeMap.get(current);
+
+        }
+    }
+
+    private boolean segmentDoesNotExist(List<MySegment> segments, MyVertex v1, MyVertex v2){
+        for (MySegment s : segments){
+            if (s.equals(v1.getIndex(), v2.getIndex())){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

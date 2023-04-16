@@ -4,6 +4,7 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import ca.mcmaster.cas.se2aa4.a3.island.Elevation.BaseElevation;
 import ca.mcmaster.cas.se2aa4.a3.island.Heatmaps.HeatmapPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.Humidity.SoilProfile;
+import ca.mcmaster.cas.se2aa4.a3.island.Roads.RoadPainter;
 import ca.mcmaster.cas.se2aa4.a3.island.Whittaker.WhittakerDiagram;
 
 import java.util.Random;
@@ -31,6 +32,7 @@ public class IslandCreator {
         constructBaseIsland(islandBuilder, aMesh, elevation, rand, numAquifers, soilProfile, numLakes, numRivers);
         islandBuilder.generateBiome(whittakerDiagram);
         islandBuilder.generateCities(numCities, rand);
+        islandBuilder.buildRoads(new RoadPainter());
         return islandBuilder.getIsland();
     }
 
