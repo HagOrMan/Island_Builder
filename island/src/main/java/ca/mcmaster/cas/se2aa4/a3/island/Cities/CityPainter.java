@@ -11,7 +11,7 @@ import java.util.Set;
 public class CityPainter implements MyCityPainter{
 
     private final CentroidToCity centroidToCity = new CentroidToCity();
-    private final CitySizeDecider cityDecider = new CitySizeDecider();
+    private final SizeDecider cityDecider = new CitySizeDecider();
 
     // Take in polygons within island and number of cities to make, and randomly makes vertices in island as cities.
     public void addCitiesToIsland(List<MyPolygon> polygons, int numCities, List<MyVertex> vertices, Random rand){
