@@ -16,6 +16,10 @@ It implements a shortest path algorithm, the current one using dijkstra's and an
 First, the most central city is found from the randomly generated cities, and this is made the capital.
 Then, the shortest path to each other city is calculated, and roads are made to connect the capital to other cities.
 
+There are also roads connecting cities to cities/villages, villages to villages/hamlets, and hamlets to hamlets.
+Taking city to be the largest and hamlet the smallest, the road sizes and colour also differ based on the size of the city types connected.
+The darker and larger the road is, the bigger the city types being connected are.
+
 # A3 Information
 
 ## How to contribute to the project
