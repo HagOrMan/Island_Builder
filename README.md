@@ -16,6 +16,9 @@ It implements a shortest path algorithm, the current one using dijkstra's and an
 First, the most central city is found from the randomly generated cities, and this is made the capital.
 Then, the shortest path to each other city is calculated, and roads are made to connect the capital to other cities.
 
+There is also secondary and tertiary roads. Secondary roads lead from cities to nearby villages, any within 15 tiles.
+Tertiary roads lead from villages to hamlets, any within 8 tiles.
+
 # A3 Information
 
 ## How to contribute to the project

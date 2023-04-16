@@ -28,10 +28,10 @@ public class RoadPainter implements MyRoadPainter{
             }
         }
         for (MyVertex v : vertices){
-            if (v.getCityType() != CityOption.HAMLET){
+            if (v.getCityType() != CityOption.VILLAGE){
                 continue;
             }
-            for (MySegment s: graphAdapter.getRoadsNeededSecondary(vertices, v, new ShortestPathDijkstra())){
+            for (MySegment s: graphAdapter.getRoadsNeededTertiary(vertices, v, new ShortestPathDijkstra())){
                 s.setThick(1);
                 s.changeColor("150,150,150");
                 segments.add(s);

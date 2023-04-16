@@ -166,10 +166,10 @@ public class GraphAdapter {
         List<MySegment> roads = new ArrayList<>();
 
         // Gets map of node connections from shortest path algorithm.
-        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 30);
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 15);
 
         // For each city vertex, backtracks from shortest path to create segments.
-        for (MyVertex v : findCityVertices(vertices, CityOption.CITY)){
+        for (MyVertex v : findCityVertices(vertices, CityOption.VILLAGE)){
             if (nodeMap.get(nodeFromIndex(v.getIndex())) != null) {
                 backtrackFromCity(roads, nodeMap, nodeFromIndex(v.getIndex()), vertices);
             }
@@ -182,7 +182,7 @@ public class GraphAdapter {
         List<MySegment> roads = new ArrayList<>();
 
         // Gets map of node connections from shortest path algorithm.
-        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 10);
+        Map<Node, Node> nodeMap = pathfinder.findPath(graph, nodeFromIndex(source.getIndex()), 8);
 
         // For each city vertex, backtracks from shortest path to create segments.
         for (MyVertex v : findCityVertices(vertices, CityOption.HAMLET)){
