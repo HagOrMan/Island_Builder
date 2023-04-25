@@ -17,8 +17,7 @@ public class RoadPainter implements MyRoadPainter{
 
         // Creates main connections from capital to all other cities/villages/hamlets.
         for (MySegment s: graphAdapter.getRoadsNeeded(vertices, source, new ShortestPathDijkstra(), createdRoads)){
-            s.setThick(3);
-            s.changeColor("50,50,50");
+            changeSegment(3, "50,50,50", s);
             segments.add(s);
             createdRoads.add(s);
         }
@@ -30,16 +29,14 @@ public class RoadPainter implements MyRoadPainter{
             // Makes city to city connections with a max distance of 15.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     15, CityOption.CITY)){
-                s.setThick(2.2f);
-                s.changeColor("100,50,50");
+                changeSegment(2.2f, "100,50,50", s);
                 segments.add(s);
                 createdRoads.add(s);
             }
             // Makes city to village connections with max distance of 15.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     15, CityOption.VILLAGE)){
-                s.setThick(2);
-                s.changeColor("100,100,50");
+                changeSegment(2, "100,100,50", s);
                 segments.add(s);
                 createdRoads.add(s);
             }
@@ -52,16 +49,14 @@ public class RoadPainter implements MyRoadPainter{
             // Makes village to village connections with a max distance of 8.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     8, CityOption.VILLAGE)){
-                s.setThick(1.5f);
-                s.changeColor("150,125,100");
+                changeSegment(1.5f, "150,125,100", s);
                 segments.add(s);
                 createdRoads.add(s);
             }
             // Makes village to hamlet connections with max distance of 8.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     8, CityOption.HAMLET)){
-                s.setThick(1.3f);
-                s.changeColor("150,150,150");
+                changeSegment(1.3f, "150,150,150", s);
                 segments.add(s);
                 createdRoads.add(s);
             }
@@ -74,11 +69,16 @@ public class RoadPainter implements MyRoadPainter{
             // Makes hamlet to hamlet connections with a max distance of 6.
             for (MySegment s: graphAdapter.getRoadsNeeded(vertices, v, new ShortestPathDijkstra(), createdRoads,
                     6, CityOption.HAMLET)){
-                s.setThick(0.8f);
-                s.changeColor("200,200,150");
+                changeSegment(0.8f, "200,200,150", s);
                 segments.add(s);
                 createdRoads.add(s);
             }
         }
     }
+
+    private void changeSegment(float thickness, String colorCode, MySegment s){
+        s.setThick(thickness);
+        s.changeColor(colorCode);
+    }
+
 }
