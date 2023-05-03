@@ -103,6 +103,11 @@ public class IslandBuilder extends AbstractBuilder {
 
     public void generateCities(int numCities, Random rand){
 
+        // Exits if no cities.
+        if (numCities == 0){
+            return;
+        }
+
         // Randomly adds cities to map based on input.
         MyCityPainter cityPainter = new CityPainter();
         normalizeVertices();

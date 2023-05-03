@@ -1,6 +1,17 @@
 # Assignment A4: Urbanism
+This project was completed as part of my 'Introduction to Software Development' course, and involved an iterative approach through 3 projects.
+Each built off the previous, from creating grids and irregular meshes, to building an island from a mesh, to mapping roads onto that island by using a shortest path algorithm.
+Assignment 2 and 3, the creation of meshes as well as island building, were completed with two teammates whose contributions can be seen in the backlog.
 
-  - Kyle Hagerman [hagermak@mcmaster.ca]
+## More about this project
+As an extension to A3-Island Generation, A4 looks to create a star network of cities on the island.
+It implements a shortest path algorithm, the current one using dijkstra's and an adjacency list, although interface segregation allows anyone to create their own graph representation and path finding algorithm to be used instead.
+First, the most central city is found from the randomly generated cities and made the capital.
+Then, the shortest path to each other city is calculated, and roads are made to connect the capital to other cities.
+
+There are also roads connecting cities to cities/villages, villages to villages/hamlets, and hamlets to hamlets.
+Taking city to be the largest and hamlet the smallest, the road sizes and colour also differ based on the size of the city types connected.
+The darker and larger the road is, the bigger the city types being connected are. There is also a component of distance, where certain city types will only connect to other types within a certain tile range.
 
 ## Information on running the program
 Check A3 Information --> Legend for information about command line arguments and specifying the number of cities.
@@ -10,15 +21,7 @@ This is done by calculating the shortest path from every node as a source node t
 Sample command to view island with cities:
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 5 -river 6 -aquifer 4 -seed 6812161995636894525 -biome warmtemperate -city 10
 
-## About this project
-As an extension to A3, island generation, A4 looks to create a star network of cities on the island. 
-It implements a shortest path algorithm, the current one using dijkstra's and an adjacency list, although interface segregation allows anyone to create their own graph representation and path finding algorithm to be used instead.
-First, the most central city is found from the randomly generated cities, and this is made the capital.
-Then, the shortest path to each other city is calculated, and roads are made to connect the capital to other cities.
 
-There are also roads connecting cities to cities/villages, villages to villages/hamlets, and hamlets to hamlets.
-Taking city to be the largest and hamlet the smallest, the road sizes and colour also differ based on the size of the city types connected.
-The darker and larger the road is, the bigger the city types being connected are.
 
 # A3 Information
 
