@@ -31,8 +31,12 @@ public class IslandCreator {
     public Mesh createIsland(IslandBuilder islandBuilder, Mesh aMesh, BaseElevation elevation, Random rand, int numAquifers, SoilProfile soilProfile, int numLakes, int numRivers, WhittakerDiagram whittakerDiagram, int numCities){
         constructBaseIsland(islandBuilder, aMesh, elevation, rand, numAquifers, soilProfile, numLakes, numRivers);
         islandBuilder.generateBiome(whittakerDiagram);
-        islandBuilder.generateCities(numCities, rand);
-        islandBuilder.buildRoads(new RoadPainter());
+
+        if (numCities != 0) {
+            islandBuilder.generateCities(numCities, rand);
+            islandBuilder.buildRoads(new RoadPainter());
+        }
+        
         return islandBuilder.getIsland();
     }
 
