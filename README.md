@@ -2,6 +2,7 @@
 This project was completed as part of my 'Introduction to Software Development' course, and involved an iterative approach through 3 projects.
 Each built off the previous, from creating grids and irregular meshes, to building an island from a mesh, to mapping roads onto that island by using a shortest path algorithm.
 Assignment 2 and 3, the creation of meshes as well as island building, were completed with two teammates whose contributions can be seen in the backlog.
+The io module is also all template code and has not been touched in the creation of this project.
 
 ## More about this project
 As an extension to A3-Island Generation, A4 looks to create a star network of cities on the island.
