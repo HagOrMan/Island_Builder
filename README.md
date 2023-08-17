@@ -2,17 +2,17 @@
 This project was completed as part of my 'Introduction to Software Development' course, and involved an iterative approach through 3 projects.
 Each built off the previous, from creating grids and irregular meshes, to building an island from a mesh, to mapping roads onto that island by using a shortest path algorithm.
 Assignment 2 and 3, the creation of meshes as well as island building, were completed with two teammates whose contributions can be seen in the backlog.
-The io module is also all template code and has not been touched in the creation of this project.
+The io module is all template code and has not been touched in the creation of this project.
 
 ## More about this project
 As an extension to A3-Island Generation, A4 looks to create a star network of cities on the island.
-It implements a shortest path algorithm, the current one using dijkstra's and an adjacency list, although interface segregation allows anyone to create their own graph representation and path finding algorithm to be used instead.
+It implements a shortest path algorithm using dijkstra's algorithm and an adjacency list, although interface segregation allows anyone to create their own graph representation and path finding algorithm to be used instead.
 First, the most central city is found from the randomly generated cities and made the capital.
 Then, the shortest path to each other city is calculated, and roads are made to connect the capital to other cities.
 
 There are also roads connecting cities to cities/villages, villages to villages/hamlets, and hamlets to hamlets.
 Taking city to be the largest and hamlet the smallest, the road sizes and colour also differ based on the size of the city types connected.
-The darker and larger the road is, the bigger the city types being connected are. There is also a component of distance, where certain city types will only connect to other types within a certain tile range.
+The darker and larger the road is, the bigger the city types being connected are. There is also a component of distance, where certain city types will only connect to other types within a certain tile range (eg. only villages within 7 blocks will be connected to ensure roads make sense and villages across the island aren't connected).
 
 ## Information on running the program
 Check A3 Information --> Legend for information about command line arguments and specifying the number of cities.
@@ -21,6 +21,9 @@ This is done by calculating the shortest path from every node as a source node t
 
 Sample command to view island with cities:
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 5 -river 6 -aquifer 4 -seed 6812161995636894525 -biome warmtemperate -city 10
+
+## Documentation
+For A4, the associated features are found in the linked project to this repo. For previous assignments, they are in the Backlog.md file.
 
 
 
@@ -62,7 +65,7 @@ When you develop features and enrich the product, remember that you have first t
 |  F20  |  A seed can be input and will always generate the same mesh  |  Arjun  |  24/03/23  |  25/03/23  |  D  |
 |  F21  |  User can select a heatmap to view elevation properties  |  Kyle  |  22/03/23  |  22/03/23  |  D  |
 |  F22  |  User can select a heatmap to view moisture properties  |  Kyle  |  22/03/23  |  22/03/23  |  D  |
-|  F  |  a  |  a  |  dd/mm/yy  |  dd/mm/yy  |  s  |
+|  F#  |  description  |  contributor  |  dd/mm/yy  |  dd/mm/yy  |  ...  |
 
 ## Documentation
 

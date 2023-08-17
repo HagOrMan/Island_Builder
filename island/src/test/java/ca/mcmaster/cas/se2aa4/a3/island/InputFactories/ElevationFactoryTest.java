@@ -2,8 +2,6 @@ package ca.mcmaster.cas.se2aa4.a3.island.InputFactories;
 
 import ca.mcmaster.cas.se2aa4.a3.island.Elevation.PlainsElevation;
 import ca.mcmaster.cas.se2aa4.a3.island.Elevation.VolcanoElevation;
-import ca.mcmaster.cas.se2aa4.a3.island.Whittaker.Biomes.Arctic;
-import ca.mcmaster.cas.se2aa4.a3.island.Whittaker.Biomes.WarmTemperate;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;

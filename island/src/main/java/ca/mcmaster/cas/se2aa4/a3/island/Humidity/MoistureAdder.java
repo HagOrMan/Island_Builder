@@ -3,7 +3,6 @@ package ca.mcmaster.cas.se2aa4.a3.island.Humidity;
 
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyPolygon;
 import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MySegment;
-import ca.mcmaster.cas.se2aa4.a3.island.ShapeAdts.MyVertex;
 
 import java.util.List;
 
