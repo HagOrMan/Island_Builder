@@ -1,4 +1,5 @@
 # Full Example
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/67165b9d-7218-44db-8f03-cb7de8e3079b)
 ```
 cd generator 
 java -jar generator.jar input.mesh -ir -pt 0 -rl 40 -np 400
@@ -25,10 +26,46 @@ java -jar generator.jar input.mesh -ir -pt 0 -rl 40 -np 400
 cd ..
 ```
 
-## Packed Arctic Island
+## Packed Warm Temperate Island
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/a01495ed-2020-4aa4-aeff-b9b74c057377)
+
 ```
 cd island
-java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil wet -lake 40 -river 20 -aquifer 20 -seed 6812161995636894525 -city 30
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil dry -lake 40 -river 20 -aquifer 20 -seed 6812161995636894525 -city 30
+
+cd ..
+
+cd visualizer
+java -jar visualizer.jar -i ../island/island.mesh -o island.svg
+```
+
+## Warm Temperate Island
+```
+cd island
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil dry -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
+
+cd ..
+
+cd visualizer
+java -jar visualizer.jar -i ../island/island.mesh -o island.svg
+```
+
+## Packed Arctic Island
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/ca103674-226d-4866-8378-a008032f7aa4)
+```
+cd island
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil dry -lake 20 -river 10 -aquifer 2 -seed 6812161995636894525 -city 30
+
+cd ..
+
+cd visualizer
+java -jar visualizer.jar -i ../island/island.mesh -o island.svg
+```
+
+## Arctic Island
+```
+cd island
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil dry -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
 
 cd ..
 
