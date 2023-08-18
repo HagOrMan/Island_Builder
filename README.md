@@ -6,6 +6,7 @@ The io module is all template code and has not been touched in the creation of t
 
 ## Examples
 To see examples of generation commands and the created islands/meshes, see [GenerationExamples.md](GenerationExamples.md).
+Note that lakes are red.
 
 ## More about this project
 As an extension to A3-Island Generation, A4 looks to create a star network of cities on the island.
