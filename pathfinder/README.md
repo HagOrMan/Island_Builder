@@ -1,7 +1,7 @@
 # Readme for Pathfinder
 
 ## Basic Information
-Author: Kyle Hagerman, hagermak@mcmaster.ca
+Author: Kyle Hagerman
 Rationale: Developing a pathfinder algorithm for the path between nodes, and allows users to extend and develop their own algorithms.
 Currently available algorithm is dijkstra's shortest path algorithm.
 
