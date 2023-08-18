@@ -26,7 +26,7 @@ java -jar generator.jar input.mesh -ir -pt 0 -rl 40 -np 400
 cd ..
 ```
 
-## Packed Warm Temperate Island
+## Packed Dry Soil Warm Temperate Island
 ![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/a01495ed-2020-4aa4-aeff-b9b74c057377)
 
 ```
@@ -39,10 +39,12 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
-## Warm Temperate Island
+## Wet Soil Warm Temperate Island
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/6302ddb1-e039-4804-b62a-7d6a69976c79)
+
 ```
 cd island
-java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil dry -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil wet -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
 
 cd ..
 
@@ -50,7 +52,7 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
-## Packed Arctic Island
+## Packed Dry Soil Arctic Island
 ![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/ca103674-226d-4866-8378-a008032f7aa4)
 ```
 cd island
@@ -62,10 +64,11 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
-## Arctic Island
+## Wet Soil Arctic Island
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/d6ea94a2-7b99-4eaf-8c16-362a937d1645)
 ```
 cd island
-java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil dry -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
+java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil wet -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
 
 cd ..
 
@@ -74,6 +77,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Hexagon Island With Cities
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/c6bc3d7a-fb0e-4525-bc9f-f69453b0ddc6)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil wet -lake 2 -river 4 -aquifer 2 -seed 6812161995636894525 -city 10
@@ -85,6 +89,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Hexagon Island No Cities
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/ab63c619-aaa4-46a4-8da8-ea3ce8e313e1)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil wet -lake 2 -river 4 -aquifer 2 -seed 6812161995636894525
@@ -97,6 +102,9 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 
 ## Heatmaps
 ### Moisture Heatmap
+#### Dry Soil
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/d8634468-5538-4f30-8468-24453d380425)
+
 To run the main island while seeing a heatmap, run the following:
 ```
 cd island
@@ -108,6 +116,10 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 To see the difference between soil profiles `dry` (current) and `wet`, run this!
+
+#### Wet Soil
+![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/bca61568-587a-45a3-8c3c-0796da9ccd0e)
+
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode circle -elevation volcano -soil wet -lake 5 -river 8 -aquifer 3 -seed 6812161995636894525 -heatmap moisture
