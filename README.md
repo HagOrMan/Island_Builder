@@ -153,6 +153,7 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 cd ..
 ```
+See the [image](GenerationExamples.md#full-example)
 
 ## Running the Generator
 ### Sample command: Irregular mesh with 400 polygons
