@@ -202,7 +202,7 @@ java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -el
 - `-river` = maximum number of rivers to generate (`default = 0`)
 - `-soil` = (defaults to `wet` profile) soil absorption profile to use, determines how much moisture is absorbed from surrounding water sources (see [list of soil profiles](#list-of-valid-soil-absorption-profiles))
 - `-biome` = (optional, if not used then land tiles will be green so no difference is seen in tiles based on their elevation and moisture) Whittaker diagram to take biomes from when visualizing (see [list of valid Whittaker profiles](#list-of-valid-whittaker-profiles))
-- `-heatmap` = (optional) heatmap type to use for visualizing properties (see [list of valid heatmaps](#list-of-valid-heatmaps)). 
+- `-heatmap` = (optional) heatmap type to use for visualizing properties (see [list of valid heatmaps](#list-of-valid-heatmaps)). Heatmaps show water sources (lakes and aquifers) as turquoise.
 
 ### Valid Parameter Values
 #### Adding your own
