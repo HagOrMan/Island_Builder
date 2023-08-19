@@ -207,6 +207,7 @@ java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -el
 ### Valid Parameter Values
 #### Adding your own
 Note: All of these items are open to extension. To add your own, create a class in the proper folder that extends/implements the proper superclass/interface, and add that class to the respective Factory in `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/InputFactories/`.
+<br> Check out [Extending the Project](ExtendTheProject.md) for more information on all examples.
 
 **Example:** 
 1. Go to `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/IslandShapes`, create a file named `Star.java`, and include the lines
@@ -239,113 +240,31 @@ You may also create a class that `implements IslandShape` if you don't want acce
 
 To add to this list, follow the steps [above](#adding-your-own)
 
-***
-***
+#### List of valid elevation profiles
+1. `plains` (default) : Randomly generated elevations per tile in low range
+2. `volcano` : Largest elevation in middle of island, slopes down
+
+To add your own profile, follow the steps [here](ExtendTheProject.md#elevations)
+
+#### List of valid soil absorption profiles
+1. `wet` (default) : Polygons within a large range gain moisture from surrounding water sources
+2. `dry` : Has 1/4 the range of wet
+
+To add your own profile, follow the steps [here](ExtendTheProject.md#soil-absorption)
+
+#### List of valid Whittaker profiles
+1. `arctic` : contains Dry, Moist, Wet, and Rain tundra tiles
+2. `warmtemperate` : contains Desert, Desert Scrub, Woodland, Dry forest, Moist Forest, Wet Forest, and Rain forest tiles
+
+To add your own profile, follow the steps [here](ExtendTheProject.md#whittaker-profile)
 
 #### List of valid heatmaps
 1. `elevation` : Shows elevation of polygons (default if non-valid heatmap is input when heatmap command is used)
 2. `moisture` : Shows moisture of polygons
 3. `vertexelevation` : Shows elevation of vertices
 
-To add your own profile:<br>
-1. Go to `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/Heatmaps`, create a file named `NewPainter.java`, and include the lines
-```
-package ca.mcmaster.cas.se2aa4.a3.island.Heatmaps;
+To add your own profile, follow the steps [here](ExtendTheProject.md#heatmaps)
 
-public class NewPainter extends HeatmapPainter{
-  ...code here
-}
-```
-with your custom logic inside the proper method: `determineColor(Shape s)`. This must return a `Color` based on a property of the input shape.
-
-2. Then go to the respective factory ( `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/InputFactories/HeatmapFactory.java`), and add to the function `createHeatmapOptions()`
-```
-options.put("newPainter", new NewPainter());
-```
-
-***
-***
-
-#### List of valid elevation profiles
-1. `plains` (default) : Randomly generated elevations per tile in low range
-2. `volcano` : Largest elevation in middle of island, slopes down
-
-To add your own profile:<br>
-1. Go to `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/Elevation`, create a file named `NewElevation.java`, and include the lines
-```
-package ca.mcmaster.cas.se2aa4.a3.island.Elevation;
-
-public class NewElevation extends GeneralElevationProperties{
-  ...code here
-}
-```
-with your custom logic inside the proper method: `generateElevationProfile(IslandShape i, List <MyPolygon> polygons, List<Integer>elevationValues)`. This function creates a list of elevation values, each will be mapped to the corresponding polygons in the `polygons` list. The island shape is passed in in case you want to use any island properties such as the midpoint for your elevation generation.
-
-2. Then go to the respective factory ( `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/InputFactories/ElevationFactory.java`), and add to the function `createElevationOptions()`
-```
-options.put("newElevation", new NewElevation(rand));
-```
-
----
-
-You may also create a class that `implements BaseElevation` if you don't want to work with `GeneralElevationProperties`. Here, you would instead create the method `generateElevation(IslandShape i, List <MyPolygon> polygons, List <MyVertex> vertices)`. This must set the elevation values of all of the input polygons and vertices. 
-
-***
-***
-
-#### List of valid soil absorption profiles
-1. `wet` (default) : Polygons within a large range gain moisture from surrounding water sources
-2. `dry` : Has 1/4 the range of wet
-
-To add your own profile:<br>
-1. Go to `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/Humidity`, create a file named `NewSoilProfile.java`, and include the lines
-```
-package ca.mcmaster.cas.se2aa4.a3.island.Humidity;
-
-public class NewSoilProfile implements SoilProfile{
-  @Override
-  public int calcMoisture(int moisture, double distance) {
-      ...code here
-  }
-}
-```
-with your custom logic inside the proper method: `calcMoisture(int moisture, double distance)`. This must return an `int` based on the input moisture and the distance from that moisture.
-
-2. Then go to the respective factory ( `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/InputFactories/SoilFactory.java`), and add to the function `createSoilOptions()`
-```
-options.put("newSoilProfile", new NewSoilProfile());
-```
-
-***
-***
-
-#### List of valid Whittaker profiles
-1. `arctic` : contains Dry, Moist, Wet, and Rain tundra tiles
-2. `warmtemperate` : contains Desert, Desert Scrub, Woodland, Dry forest, Moist Forest, Wet Forest, and Rain forest tiles
-
-To add your own profile:<br>
-1. Go to `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/Whittaker/Biomes`, create a file named `NewBiome.java`, and include the lines
-```
-package ca.mcmaster.cas.se2aa4.a3.island.Heatmaps;
-
-public class NewBiome extends Biome{
-  ...code here
-}
-```
-with your custom logic inside the proper method: `setRegions()` and `setMappings()`. 
-* `setRegions()` must create and return a `List<Geometry> regions`, where each item is a shape that fits within the `width` and `height`. 
-* `setMappings()` must then create and return a `Map<Geometry, Class<? extends Tile>> mappings` where each item in `regions` maps to a `Tile` found in `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/Whittaker/BiomeTiles`.
-
-The idea behind the abstract class `Biome` is that it simulates a Whittaker graph as a `Geometry` object and allows the user to populate that geometry with `regions` (smaller geometries) that correspond to a certain `Tile`. Thus elevation and moisture are the axes which determine the region a `Tile` is in.
-
-2. Then go to the respective factory ( `island/src/main/java/ca/mcmaster/cas/se2aa4/a3/island/InputFactories/BiomeFactory.java`), and add to the function `createBiomeOptions()`
-```
-options.put("newBiome", new NewBiome());
-```
-
----
-
-You may also create a class that `implements WhittakerDiagram` if you don't want to work with `Biome`. Here, you would instead create the method `getTile(int moisture, int elevation)`. This must return any tile based on the moisture and elevation. Each Tile object has a `getColor()` that returns the color of the tile to help visualize it on the island. 
 
 ## Running the visualizer
 The visualizer is simple to run, and uses 3 arguments at the most.
