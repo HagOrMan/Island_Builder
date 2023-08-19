@@ -1,5 +1,5 @@
 # Full Example
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/67165b9d-7218-44db-8f03-cb7de8e3079b)
+![image](images/MainExample.png)
 ```
 cd generator 
 java -jar generator.jar input.mesh -ir -pt 0 -rl 40 -np 400
@@ -27,7 +27,7 @@ cd ..
 ```
 
 ## Packed Dry Soil Warm Temperate Island
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/a01495ed-2020-4aa4-aeff-b9b74c057377)
+![image](images/DrySoilWarmTemperate.png)
 
 ```
 cd island
@@ -40,8 +40,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Wet Soil Warm Temperate Island
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/6302ddb1-e039-4804-b62a-7d6a69976c79)
-
+![image](images/WetSoilWarmTemperate.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil wet -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
@@ -53,7 +52,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Packed Dry Soil Arctic Island
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/ca103674-226d-4866-8378-a008032f7aa4)
+![image](images/DrySoilArctic.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil dry -lake 20 -river 10 -aquifer 2 -seed 6812161995636894525 -city 30
@@ -65,7 +64,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Wet Soil Arctic Island
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/d6ea94a2-7b99-4eaf-8c16-362a937d1645)
+![image](images/WetSoilArctic.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome arctic -soil wet -lake 10 -river 5 -aquifer 2 -seed 6812161995636894525 -city 15
@@ -77,7 +76,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Hexagon Island With Cities
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/c6bc3d7a-fb0e-4525-bc9f-f69453b0ddc6)
+![image](images/HexagonCities.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil wet -lake 2 -river 4 -aquifer 2 -seed 6812161995636894525 -city 10
@@ -89,7 +88,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Hexagon Island No Cities
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/ab63c619-aaa4-46a4-8da8-ea3ce8e313e1)
+![image](images/HexagonNoCities.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -biome warmtemperate -soil wet -lake 2 -river 4 -aquifer 2 -seed 6812161995636894525
@@ -103,9 +102,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ## Heatmaps
 ### Moisture Heatmap
 #### Dry Soil
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/d8634468-5538-4f30-8468-24453d380425)
-
-To run the main island while seeing a heatmap, run the following:
+![image](images/MoistureHeatmapDry.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode circle -elevation volcano -soil dry -lake 5 -river 8 -aquifer 3 -seed 6812161995636894525 -heatmap moisture
@@ -115,11 +112,9 @@ cd ..
 cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
-To see the difference between soil profiles `dry` (current) and `wet`, run this!
 
 #### Wet Soil
-![image](https://github.com/HagOrMan/Island_Builder/assets/86536365/bca61568-587a-45a3-8c3c-0796da9ccd0e)
-
+![image](images/MoistureHeatmapWet.png)
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode circle -elevation volcano -soil wet -lake 5 -river 8 -aquifer 3 -seed 6812161995636894525 -heatmap moisture
@@ -131,6 +126,8 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ### Elevation Heatmap Volcano
+![image](images/ElevationHeatmapVolcano.png)
+
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -seed 6812161995636894525 -heatmap elevation
@@ -142,6 +139,8 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ### Vertex Elevation Heatmap Volcano
+![image](images/VertexElevationHeatmapVolcano.png)
+
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -seed 6812161995636894525 -heatmap vertexelevation
@@ -153,6 +152,8 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## No Biome
+![image](images/NoBiome.png)
+
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -soil wet -lake 2 -river 4 -aquifer 2 -seed 6812161995636894525
@@ -164,7 +165,8 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
 ## Lagoon
-To run the lagoon, run the following:
+![image](images/Lagoon.png)
+
 ```
 cd island
 java -jar island.jar -o lagoon.mesh -i ../generator/input.mesh -mode lagoon -seed 2335384247420393129
@@ -178,6 +180,8 @@ java -jar visualizer.jar -i ../island/lagoon.mesh -o lagoon.svg
 # Regular Mesh Generation
 
 ## Generate a Grid
+![image](images/Grid.png)
+
 To generate a grid with the following specifications:
 - polygon transparency of `200` (`-pa`)
 - segment thickness of `10` (`-st`)
@@ -191,7 +195,9 @@ cd visualizer
 java -jar visualizer.jar -i ../generator/sample.mesh -o sample.svg 
 ```
 
-## Generate a Grid in Debug Mode
+## Generate a Grid in Debug 
+![image](images/GridDebug.png)
+
 ```
 cd generator 
 java -jar generator.jar sample.mesh
@@ -203,6 +209,8 @@ java -jar visualizer.jar -i ../generator/sample.mesh -o sample.svg -X
 ```
 
 ## Generate an Irregular Mesh
+![image](images/Irregular.png)
+
 To generate an irregular mesh (`-ir`) with the following specifications: 
 - `200` polygons (`-np`)
 - relaxed `5` times (`-rl`)
@@ -221,6 +229,8 @@ java -jar visualizer.jar -i ../generator/sample.mesh -o sample.svg
 ```
 
 ## Generate an Irregular Mesh in Debug Mode
+![image](images/IrregularDebug.png)
+
 To generate an irregular mesh (`-ir`) in debug mode with the following specifications:
 - `200` polygons (`-np`)
 - relaxed `5` times (`-rl`)
@@ -228,7 +238,7 @@ To generate an irregular mesh (`-ir`) in debug mode with the following specifica
 - segment thickness of `10` (`-st`)
 - everything else `default`
 
-Note that debug mode will normalize some of the specifications we want here.
+Note that debug mode will normalize most of the specifications we want here.
 
 ```
 cd generator 
