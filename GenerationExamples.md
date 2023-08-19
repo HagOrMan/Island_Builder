@@ -141,7 +141,7 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
-### Vertex Elevation Heatmap
+### Vertex Elevation Heatmap Volcano
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -seed 6812161995636894525 -heatmap vertexelevation
@@ -167,7 +167,7 @@ java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 To run the lagoon, run the following:
 ```
 cd island
-java -jar island.jar -o lagoon.mesh -i ../generator/input.mesh -mode lagoon
+java -jar island.jar -o lagoon.mesh -i ../generator/input.mesh -mode lagoon -seed 2335384247420393129
 
 cd ..
 
