@@ -130,7 +130,7 @@ cd visualizer
 java -jar visualizer.jar -i ../island/island.mesh -o island.svg
 ```
 
-### Elevation Heatmap
+### Elevation Heatmap Volcano
 ```
 cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -elevation volcano -seed 6812161995636894525 -heatmap elevation
