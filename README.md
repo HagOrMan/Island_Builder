@@ -102,7 +102,7 @@ cd island
 java -jar island.jar -o island.mesh -i ../generator/input.mesh
 ```
 
-To create a lagoon instead, use commands similar to the following.
+To create a lagoon instead, use commands similar to the following. `lagoon` mode creates an inner lake of lagoon water, and all tiles adjacent to water are beach tiles.
 ```
 cd island
 java -jar island.jar -o lagoon.mesh -i ../generator/input.mesh -mode lagoon
@@ -193,8 +193,8 @@ java -jar island.jar -o island.mesh -i ../generator/input.mesh -mode hexagon -el
 ### Legend
 - `-i` = input file path to use
 - `-o` = output file path to use
-- `-seed` = seed to use which will always generate the same map for the same seed and other parameters. Seed is printed if none is specified so you can reproduce that generation
-- `-mode` = (defaults to `circle`) either `lagoon` for lagoon mode or valid shape (see [list of valid shapes](#list-of-valid-shapes))
+- `-seed` = seed to use which will always generate the same map for the same seed and other parameters. Seed is printed if none is specified, so you can reproduce that generation
+- `-mode` = (defaults to `circle`) either `lagoon` for lagoon mode or valid shape (see [list of valid shapes](#list-of-valid-shapes)). 
 - `-city` = number of cities to generate (`default = 0`)
 - `-elevation` = (defaults to `plains`) elevation profile to use (see [list of valid profiles](#list-of-valid-elevation-profiles))
 - `-aquifer` = maximum number of aquifers to create (`default = 0`)
