@@ -353,4 +353,4 @@ The visualizer is simple to run, and uses 3 arguments at the most.
 ### Legend
 - `-i` = input file path to use
 - `-o` = output file path to use
-- `-X` = (optional) run in debug mode. This uses basic colours to view the connections between polygons and their neighbours, whose centroids are joined by a specially coloured segment.
+- `-X` = (optional) run in debug mode. This uses basic colours to view the connections between polygons and their neighbours, where centroids are red and are joined by a grey segment. Regular segments are white.
